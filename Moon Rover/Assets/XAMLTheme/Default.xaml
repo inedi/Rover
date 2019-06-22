@@ -7,16 +7,26 @@
     Colors
     ///////////////////////////////////////////////
     -->
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#7F000000"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="Black"/>
     <SolidColorBrush x:Key="ForegroundBrush" Color="White"/>
 
-    
+    <SolidColorBrush x:Key="HudBackgroundBrush" Color="#FF1a1a1a"/>
+
+
     <!--
     ///////////////////////////////////////////////
     Texts
     ///////////////////////////////////////////////
     -->
+    
+    <FontFamily x:Key="FontFamily">/WPF;component/Assets/Fonts/#ISOCPEUR</FontFamily>
+    <!-- Font ISOCPEUR
+         Copyright 1997,1998 Autodesk Inc.
+         Free for Personal Use
+    -->
+    
     <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
@@ -27,7 +37,7 @@
     </Style>
 
     <Style x:Key="TitleTextStyle" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="LineStackingStrategy" Value="MaxHeight"/>
     </Style>
@@ -39,10 +49,73 @@
     -->
     <Style x:Key="SpeedGaugeStyle" TargetType="controls:Gauge">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="Minimum" Value="0"/>
-        <Setter Property="Maximum" Value="70"/>
         
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Gauge">
+                    <Grid Width="370" Height="347">
+                        <Path  x:Name="PART_Path"
+                            VerticalAlignment="Top"
+                            Stretch="Fill"
+                            Stroke="{StaticResource HudBackgroundBrush}"
+                            StrokeThickness="22"
+                            StrokeStartLineCap="Round"
+                            StrokeEndLineCap="Round" 
+                               Data="M 435.75097,408.42496 A 171.9214,171.9214 0 0 1 354.67376,215.5747 171.9214,171.9214 0 0 1 519.85749,87.203871 171.9214,171.9214 0 0 1 686.71611,213.38999 171.9214,171.9214 0 0 1 608.18358,407.29042"
+                            
+                            />
+                        <Ellipse Fill="AntiqueWhite" Height="326" Width="326" Margin="0,22,0,0" Visibility="Collapsed"/>
+                        <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="10" StartAngle="230"  Margin="0,23,0,0" >
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" />
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                        </controls:RadialPanel>
+                        <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="30" StartAngle="240"  Margin="0,23,0,0" >
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="White" Width="7" Height="7"/>
+                        </controls:RadialPanel>
+                        
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

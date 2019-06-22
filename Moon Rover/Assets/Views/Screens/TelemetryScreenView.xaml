@@ -16,9 +16,11 @@
 <!--Dashboard panel-->
         <Grid>
             <controls:Gauge 
+                
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
-                WarningValue="60"/>
+               
+                Style="{StaticResource SpeedGaugeStyle}"/>
 
         </Grid>
 
@@ -49,10 +51,12 @@
                      Fill="#FF00A2FF"
                      />
             <TextBlock Text="20:34" 
+                       Margin="20,0"
+                       Style="{StaticResource TitleTextStyle}" />
+
+            <TextBlock  Text="21 сент. 2036" 
                        Style="{StaticResource TitleTextStyle}"/>
-            
-            <TextBlock Text="21 сент. 2036" 
-                       Style="{StaticResource TitleTextStyle}"/>
+          
         </StackPanel>
     </Grid>
 </UserControl>

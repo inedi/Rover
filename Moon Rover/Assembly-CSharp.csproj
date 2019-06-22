@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Controls\Gauge.cs" />
+    <Compile Include="Assets\Controls\RadialPanel.cs" />
     <Compile Include="Assets\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Assets\Mvvm\ObservableObject.cs" />
     <Compile Include="Assets\Mvvm\RelayCommand.cs" />
