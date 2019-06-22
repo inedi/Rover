@@ -62,6 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Controls\Gauge.cs" />
+    <Compile Include="Assets\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Assets\Mvvm\ObservableObject.cs" />
+    <Compile Include="Assets\Mvvm\RelayCommand.cs" />
+    <Compile Include="Assets\Mvvm\ViewModelBase.cs" />
+    <Compile Include="Assets\Mvvm\WeakAction.cs" />
+    <Compile Include="Assets\Mvvm\WeakActionT.cs" />
+    <Compile Include="Assets\Mvvm\WeakFunc.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\API\Core\CallbackAttribute.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\API\Core\ContentPropertyAttribute.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\API\Core\DragDrop.cs" />

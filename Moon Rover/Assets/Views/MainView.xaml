@@ -4,16 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:Rover.Views"
+             xmlns:NoesisGUIExtensions="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1200">
+    <NoesisGUIExtensions:Xaml.Dependencies>
+        <NoesisGUIExtensions:Dependency Source="Screens/TelemetryScreenView.xaml"/>
+        <NoesisGUIExtensions:Dependency Source="Screens/SecondScreenIView.xaml"/>
+
+    </NoesisGUIExtensions:Xaml.Dependencies>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <views:TelemetryScreenView />
+        <views:TelemetryScreenView 
+            Visibility="Collapsed"/>
         <views:SecondScreenIView 
-            Grid.Column="1"/>
+            Grid.Column="1"
+            Visibility="Collapsed"/>
 
         <Menu Width="200" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Menu">

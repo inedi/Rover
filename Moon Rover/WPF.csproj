@@ -93,6 +93,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assets\Controls\Gauge.cs" />
+    <Compile Include="Assets\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Assets\Mvvm\ObservableObject.cs" />
+    <Compile Include="Assets\Mvvm\RelayCommand.cs" />
+    <Compile Include="Assets\Mvvm\ViewModelBase.cs" />
+    <Compile Include="Assets\Mvvm\WeakAction.cs" />
+    <Compile Include="Assets\Mvvm\WeakActionT.cs" />
+    <Compile Include="Assets\Mvvm\WeakFunc.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -135,9 +143,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Converters\" />
     <Folder Include="Assets\Data\" />
-    <Folder Include="Assets\Mvvm\" />
     <Folder Include="Assets\ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
