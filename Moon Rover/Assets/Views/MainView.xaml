@@ -3,9 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:Rover.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1200">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <views:TelemetryScreenView />
+        <views:SecondScreenIView 
+            Grid.Column="1"/>
+
+        <Menu Width="200" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <MenuItem Header="Menu">
+                <MenuItem Header="Screen1"/>
+                <MenuItem Header="Screen2"/>
+            </MenuItem>
+        </Menu>
     </Grid>
 </UserControl>

@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Flares
+  - UINoesis
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UINoesis
+    uniqueID: 649453365
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Flares
+    uniqueID: 185742723
     locked: 0

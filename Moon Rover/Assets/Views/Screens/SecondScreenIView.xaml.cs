@@ -8,9 +8,9 @@ using System.Windows.Controls;
 
 namespace Rover.Views
 {
-    public partial class MainView : UserControl
+    public partial class SecondScreenIView : UserControl
     {
-        public MainView()
+        public SecondScreenIView()
         {
             InitializeComponent();
         }
@@ -18,8 +18,9 @@ namespace Rover.Views
 #if NOESIS
         private void InitializeComponent()
         {
-            GUI.LoadComponent(this, "Assets/Views/MainView.xaml");
+            GUI.LoadComponent(this, "Assets/Views/Screens/SecondScreenIView.xaml");
         }
 #endif
+
     }
 }

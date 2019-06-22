@@ -73,6 +73,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\Views\Screens\SecondScreenIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Views\Screens\TelemetryScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\XAMLTheme\Default.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +95,12 @@
     </Compile>
     <Compile Include="Assets\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs">
+      <DependentUpon>SecondScreenIView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs">
+      <DependentUpon>TelemetryScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

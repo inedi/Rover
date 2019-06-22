@@ -7,5 +7,30 @@
     Colors
     ///////////////////////////////////////////////
     -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#7F000000"/>
     <SolidColorBrush x:Key="ForegroundBrush" Color="White"/>
+
+    
+    <!--
+    ///////////////////////////////////////////////
+    Texts
+    ///////////////////////////////////////////////
+    -->
+    <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="LineHeight" Value="20"/>
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+    </Style>
+
+    <Style x:Key="TitleTextStyle" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="LineStackingStrategy" Value="MaxHeight"/>
+    </Style>
+
+
 </ResourceDictionary>

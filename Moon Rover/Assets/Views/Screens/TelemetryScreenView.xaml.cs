@@ -8,9 +8,9 @@ using System.Windows.Controls;
 
 namespace Rover.Views
 {
-    public partial class MainView : UserControl
+    public partial class TelemetryScreenView : UserControl
     {
-        public MainView()
+        public TelemetryScreenView()
         {
             InitializeComponent();
         }
@@ -18,8 +18,9 @@ namespace Rover.Views
 #if NOESIS
         private void InitializeComponent()
         {
-            GUI.LoadComponent(this, "Assets/Views/MainView.xaml");
+            GUI.LoadComponent(this, "Assets/Views/Screens/TelemetryScreenView.xaml");
         }
 #endif
+
     }
 }
