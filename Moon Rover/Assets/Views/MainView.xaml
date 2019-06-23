@@ -18,7 +18,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <views:TelemetryScreenView 
+        <views:TelemetryScreenView x:Name="telemetryScreenView"
             Visibility="Visible"/>
         <views:SecondScreenIView 
             Grid.Column="1"
@@ -30,5 +30,6 @@
                 <MenuItem Header="Screen2"/>
             </MenuItem>
         </Menu>
+        
     </Grid>
 </UserControl>

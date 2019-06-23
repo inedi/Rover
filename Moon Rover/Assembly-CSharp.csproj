@@ -626,6 +626,7 @@
     <Compile Include="Assets\NoesisGUI\Plugins\NoesisXaml.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\XamlDependencies.cs" />
     <Compile Include="Assets\Scripts\FlyCameraScript.cs" />
+    <Compile Include="Assets\Scripts\RenderCameraToTelemetryScreenXaml.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs" />

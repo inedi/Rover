@@ -19,6 +19,7 @@ namespace Rover.Views
         private void InitializeComponent()
         {
             GUI.LoadComponent(this, "Assets/Views/Screens/TelemetryScreenView.xaml");
+
         }
 #endif
 

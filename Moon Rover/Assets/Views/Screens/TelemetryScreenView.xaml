@@ -36,8 +36,9 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-            <Image Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+            <Rectangle x:Name="radarCameraRect"
+                       Grid.ColumnSpan="3" Grid.RowSpan="3" 
+                       StrokeThickness="10" Margin="30"  Fill="Black"/>
         </Grid>
         
 <!--Clock panel-->
