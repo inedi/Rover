@@ -11,7 +11,7 @@
     <SolidColorBrush x:Key="ForegroundBrush" Color="White"/>
 
     <SolidColorBrush x:Key="HudBackgroundBrush" Color="#FF1a1a1a"/>
-
+    <SolidColorBrush x:Key="DarkDotBrush" Color="#FF383838"/>
 
     <!--
     ///////////////////////////////////////////////
@@ -68,48 +68,48 @@
                             />
                         <Ellipse Fill="AntiqueWhite" Height="326" Width="326" Margin="0,22,0,0" Visibility="Collapsed"/>
                         <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="10" StartAngle="230"  Margin="0,23,0,0" >
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" />
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
-                            <Ellipse Fill="DarkGray" Width="5" Height="5"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse  />
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
                         </controls:RadialPanel>
                         <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="30" StartAngle="240"  Margin="0,23,0,0" >
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
-                            <Ellipse Fill="White" Width="7" Height="7"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
+                            <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                         </controls:RadialPanel>
                         
                     </Grid>

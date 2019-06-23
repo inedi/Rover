@@ -36,8 +36,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
-            
+
+            <Image Grid.ColumnSpan="3" Grid.RowSpan="3"/>
         </Grid>
         
 <!--Clock panel-->
