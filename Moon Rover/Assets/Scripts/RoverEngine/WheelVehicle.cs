@@ -19,6 +19,10 @@ namespace VehicleBehaviour
     public class WheelVehicle : MonoBehaviour
     {
 
+        [SerializeField] Camera noesisCamera;
+
+       
+
         [Header("Inputs")]
 #if MULTIOSCONTROLS
         [SerializeField] PlayerNumber playerId;
@@ -34,7 +38,7 @@ namespace VehicleBehaviour
         [SerializeField] string jumpInput = "Jump";
         [SerializeField] string driftInput = "Drift";
         [SerializeField] string boostInput = "Boost";
-
+        
         /* 
          *  Turn input curve: x real input, y value used
          *  My advice (-1, -1) tangent x, (0, 0) tangent 0 and (1, 1) tangent x
@@ -288,10 +292,10 @@ namespace VehicleBehaviour
             }
             else
             {
-                //foreach (WheelCollider wheel in wheels)
-                //{
-                //    wheel.brakeTorque = Mathf.Abs(throttle) * brakeForce;
-                //}
+                foreach (WheelCollider wheel in wheels)
+                {
+                    wheel.brakeTorque = Mathf.Abs(throttle) * brakeForce;
+                }
             }
 
             // Jump

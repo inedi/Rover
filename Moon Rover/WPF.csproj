@@ -102,6 +102,7 @@
     <Compile Include="Assets\Mvvm\WeakAction.cs" />
     <Compile Include="Assets\Mvvm\WeakActionT.cs" />
     <Compile Include="Assets\Mvvm\WeakFunc.cs" />
+    <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -146,7 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Data\" />
-    <Folder Include="Assets\ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Noesis.GUI.2.2.3\build\net461\Noesis.GUI.targets" Condition="Exists('packages\Noesis.GUI.2.2.3\build\net461\Noesis.GUI.targets')" />

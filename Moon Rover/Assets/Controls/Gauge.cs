@@ -15,7 +15,7 @@ namespace Rover.Controls
 
         #region DependencyProperties
 
-        public static readonly DependencyProperty WarningValueProperty = DependencyProperty.Register("WarningValue", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0));
+        public static readonly DependencyProperty WarningValueProperty = DependencyProperty.Register("WarningValue", typeof(int), typeof(Gauge), new UIPropertyMetadata(0));
 
 
 
@@ -23,9 +23,9 @@ namespace Rover.Controls
 
         #region Instance properties
 
-        public double WarningValue
+        public int WarningValue
         {
-            get { return (double)GetValue(WarningValueProperty); }
+            get { return (int)GetValue(WarningValueProperty); }
             set { SetValue(WarningValueProperty, value); }
         }
 
@@ -33,10 +33,55 @@ namespace Rover.Controls
 
         #region Instance methods
 
+        private static void OnWarningValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var percentagePresenter = (Gauge)d;
+            percentagePresenter.OnWarningValueChanged((double)e.NewValue);
+        }
+
         public Gauge()
         {
+            //_smoothValueAnimation = new DoubleAnimation
+            //{
+            //    BeginTime = new TimeSpan(0, 0, 0, 0, 300),
+            //    Duration = TimeSpan.FromMilliseconds(AnimationSpeed),
+            //    FillBehavior = FillBehavior.HoldEnd,
+            //    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+            //};
+            //_smoothValueAnimation.Completed += OnSmoothValueAnimationCompleted;
+            //_smoothValueStoryboard.Children.Add(_smoothValueAnimation);
 
+            //Storyboard.SetTarget(_smoothValueAnimation, this);
+            //Storyboard.SetTargetProperty(_smoothValueAnimation, new PropertyPath(SmoothValueProperty));
 
+        }
+//#if NOESIS
+//        public void OnApplyTemplate()
+//        {
+           
+//        }
+//#else
+//        public override void OnApplyTemplate()
+//        {
+//            base.OnApplyTemplate();
+//        }
+//#endif
+
+        public void OnWarningValueChanged(double newValue)
+        {
+            //if (double.IsNaN(newValue))
+            //    return;
+
+            //if (_smoothValueAnimationStarted)
+            //{
+            //    _smoothValueStoryboard.Stop();
+            //}
+
+            //_smoothValueAnimation.From = SmoothValue;
+            //_smoothValueAnimation.To = newValue;
+            //_smoothValueStoryboard.Begin(this);
+
+            //_smoothValueAnimationStarted = true;
         }
 
         private void CalculateNewDemensions(double width)

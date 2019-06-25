@@ -22,7 +22,7 @@
             Visibility="Visible"/>
         <views:SecondScreenIView 
             Grid.Column="1"
-            Visibility="Collapsed"/>
+            Visibility="Visible"/>
 
         <Menu Width="200" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Menu">

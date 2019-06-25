@@ -5,6 +5,7 @@ using Noesis;
 using System;
 using System.Windows.Controls;
 #endif
+using Rover.ViewModels;
 
 namespace Rover.Views
 {

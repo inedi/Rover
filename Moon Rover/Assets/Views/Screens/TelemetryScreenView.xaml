@@ -16,12 +16,10 @@
 <!--Dashboard panel-->
         <Grid>
             <controls:Gauge 
-                
+                WarningValue="{Binding Speed}"
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
-               
                 Style="{StaticResource SpeedGaugeStyle}"/>
-
         </Grid>
 
 <!--Navigate panel-->

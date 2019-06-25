@@ -111,7 +111,11 @@
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                         </controls:RadialPanel>
-                        
+                        <TextBlock Text="{Binding WarningValue, RelativeSource={RelativeSource TemplatedParent}}" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center" 
+                                   Style="{StaticResource TitleTextStyle}" 
+                                   FontSize="50"/> 
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -8,20 +8,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Noesis;
+using Rover.ViewModels;
+using Rover.Views;
 
 namespace VehicleBehaviour.Utils
 {
     public class FollowCamera : MonoBehaviour
     {
+        [SerializeField] Camera noesisCamera;
+        
+        TelemetryScreenViewModel _context;
+
         // Should the camera follow the target
         [SerializeField] bool follow = false;
         public bool Follow { get { return follow; } set { follow = value; } }
 
         // Current target
-        [SerializeField] Transform target;
+        [SerializeField] UnityEngine.Transform target;
 
         // ALl possible targets
-        [SerializeField] Transform[] targets;
+        [SerializeField] UnityEngine.Transform[] targets;
 
         // Offset from the target position
         [SerializeField] Vector3 offset;
@@ -33,7 +40,7 @@ namespace VehicleBehaviour.Utils
         [SerializeField] float lerpRotationMultiplier = 1f;
 
         // Speedometer
-        [SerializeField] Text speedometer;
+       // [SerializeField] Text speedometer;
 
         // We use a rigidbody to prevent the camera from going in walls but it means sometime it can get stuck
         Rigidbody rb;
@@ -41,9 +48,17 @@ namespace VehicleBehaviour.Utils
 
         WheelVehicle vehicle;
 
+
         void Start()
         {
             rb = GetComponent<Rigidbody>();
+
+            var view = noesisCamera.GetComponent<NoesisView>().Content;
+            var telemetryview = (TelemetryScreenView)view.FindName("telemetryScreenView");
+            _context = (TelemetryScreenViewModel)telemetryview.DataContext;
+
+            SetTargetIndex(0);
+
         }
 
         // Select target from targets list using it's index
@@ -51,7 +66,7 @@ namespace VehicleBehaviour.Utils
         {
             WheelVehicle v;
 
-            foreach (Transform t in targets)
+            foreach (UnityEngine.Transform t in targets)
             {
                 v = t != null ? t.GetComponent<WheelVehicle>() : null;
                 if (v != null)
@@ -103,18 +118,17 @@ namespace VehicleBehaviour.Utils
             }
 
             // Update speedometer
-            if (speedometer != null && vehicle != null)
+            if (vehicle != null)
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Speed:");
                 sb.Append(((int)(vehicle.Speed)).ToString());
                 sb.Append(" Kph");
 
-                speedometer.text = sb.ToString();
-            }
-            else if (speedometer.text != "")
-            {
-                speedometer.text = "";
+                _context.Speed = (int)vehicle.Speed;
+
+             //   _telemetryScreenViewModel.Speed = (int)(vehicle.Speed);
+             //speedometer.text = sb.ToString();
             }
 
         }

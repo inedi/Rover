@@ -8,6 +8,7 @@ public class RenderCameraToTelemetryScreenXaml : MonoBehaviour
     public string _renderElementRectangleName;
     void Start()
     {
+        
         var view = this.GetComponent<NoesisView>().Content;
         var telemetryview = (TelemetryScreenView)view.FindName("telemetryScreenView");
         var rect = (Rectangle)telemetryview.FindName(_renderElementRectangleName);
