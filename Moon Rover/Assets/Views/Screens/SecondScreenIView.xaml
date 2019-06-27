@@ -6,7 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Slider Width="300" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Value="{Binding Speed}" Maximum="20"/>
+        
     </Grid>
 </UserControl>

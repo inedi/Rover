@@ -125,7 +125,7 @@ namespace VehicleBehaviour.Utils
                 sb.Append(((int)(vehicle.Speed)).ToString());
                 sb.Append(" Kph");
 
-                _context.Speed = (int)vehicle.Speed;
+                _context.Speed = (int)Mathf.Abs(vehicle.Speed);
 
              //   _telemetryScreenViewModel.Speed = (int)(vehicle.Speed);
              //speedometer.text = sb.ToString();

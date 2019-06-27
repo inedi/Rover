@@ -33,9 +33,9 @@ namespace VehicleBehaviour
 
         // Input names to read using GetAxis
         [SerializeField] string throttleInput = "Throttle";
-        [SerializeField] string brakeInput = "Brake";
         [SerializeField] string turnInput = "Horizontal";
         [SerializeField] string jumpInput = "Jump";
+        [SerializeField] string brakeInput = "Brake";
         [SerializeField] string driftInput = "Drift";
         [SerializeField] string boostInput = "Boost";
         
@@ -102,7 +102,7 @@ namespace VehicleBehaviour
         public float SteerSpeed { get { return steerSpeed; } set { steerSpeed = Mathf.Clamp(value, 0.001f, 1.0f); } }
 
         // How hight do you want to jump?
-        [Range(1f, 1.5f)]
+        [Range(0.1f, 1.5f)]
         [SerializeField] float jumpVel = 1.3f;
         public float JumpVel { get { return jumpVel; } set { jumpVel = Mathf.Clamp(value, 1.0f, 1.5f); } }
 
@@ -123,7 +123,7 @@ namespace VehicleBehaviour
         [SerializeField] Transform centerOfMass;
 
         // Force aplied downwards on the car, proportional to the car speed
-        [Range(0.5f, 10f)]
+        [Range(0f, 10f)]
         [SerializeField] float downforce = 1.0f;
         public float Downforce { get { return downforce; } set { downforce = Mathf.Clamp(value, 0, 5); } }
 
