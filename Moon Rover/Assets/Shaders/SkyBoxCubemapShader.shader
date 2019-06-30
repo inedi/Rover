@@ -67,8 +67,7 @@
 				c = c * _Tint.rgb * unity_ColorSpaceDouble.rgb;
 				c *= _Exposure;
 
-				return half4(c, 0.1);
-				//return texCUBE(_Tex, i.texcoord); 
+				return half4(c, 1);
 			}
 			ENDCG
 		}

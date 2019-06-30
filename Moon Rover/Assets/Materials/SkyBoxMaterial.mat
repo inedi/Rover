@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OverlayTex:
-        m_Texture: {fileID: 8900000, guid: 01e01d0b5a577514ba377ce79bc6468f, type: 3}
+        m_Texture: {fileID: 8900000, guid: 905d014548ad9c44c8c8e704d05cb970, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RightTex:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Blend: 0
+    - _Blend: 0.165
     - _Brightness: 0.5
     - _Exposure: 1
     - _ImageType: 0
@@ -68,11 +68,12 @@ Material:
     - _Mapping: 1
     - _MirrorOnBack: 0
     - _Rotation: 0
-    - _RotationX: 4.146403
-    - _RotationY: 4.146403
+    - _RotationX: 0
+    - _RotationY: 0
     - _RotationZ: 0
     m_Colors:
-    - _Axis: {r: 0.3, g: 0.4, b: 0, a: 0.9}
+    - _Axis: {r: 0, g: 0, b: 0, a: 0}
     - _BackgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RotationAxis: {r: 0, g: 1, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
