@@ -1,7 +1,5 @@
 ﻿/*
- * This code is part of Arcade Car Physics for Unity by Saarg (2018)
- * 
- * This is distributed under the MIT Licence (see LICENSE.md for details)
+ * This code use is part of Arcade Car Physics for Unity by Saarg (2018)
  */
 using System.Text;
 using System.Collections;
@@ -18,7 +16,20 @@ namespace VehicleBehaviour.Utils
     {
         [SerializeField] Camera noesisCamera;
         
+        //UI datacontext
         TelemetryScreenViewModel _context;
+
+        //mouselook
+
+        [SerializeField] string mouseLookInput = "Mouse Look";
+        public float cameraSensitivity = 120;
+        [HideInInspector] public bool allowMouseLook = true;
+        bool mouseLook;
+        public bool MouseLook { get { return mouseLook; } set { mouseLook = value; } }
+        private float rotationX = 0.0f;
+        private float rotationY = 0.0f;
+
+
 
         // Should the camera follow the target
         [SerializeField] bool follow = false;
@@ -48,6 +59,8 @@ namespace VehicleBehaviour.Utils
 
         WheelVehicle vehicle;
 
+        // скорость зума
+        public float wheel_speed = 100f; 
 
         void Start()
         {
@@ -88,49 +101,93 @@ namespace VehicleBehaviour.Utils
 
         void FixedUpdate()
         {
-            // If we don't follow or target is null return
-            if (!follow || target == null) return;
 
-            // normalise velocity so it doesn't jump too far
-            this.rb.velocity.Normalize();
 
-            // Save transform localy
-            Quaternion curRot = transform.rotation;
-            Vector3 tPos = target.position + target.TransformDirection(offset);
 
-            // Look at the target
-            transform.LookAt(target);
+            
 
-            // Keep the camera above the target y position
-            if (tPos.y < target.position.y)
+
+            mouseLook = GetInput(mouseLookInput) > 0;
+
+            if (mouseLook && allowMouseLook)
             {
-                tPos.y = target.position.y;
+
+                rotationX += Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
+                rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
+                rotationY = Mathf.Clamp(rotationY, -90, 90);
+
+                transform.rotation = Quaternion.AngleAxis(rotationX, Vector3.up);
+                transform.rotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
+
+            }
+            else
+            {
+                // If we don't follow or target is null return
+                if (!follow || target == null) return;
+
+                // normalise velocity so it doesn't jump too far
+                this.rb.velocity.Normalize();
+
+                // Save transform localy
+                Quaternion curRot = transform.rotation;
+                Vector3 tPos = target.position + target.TransformDirection(offset);
+
+                // Look at the target
+                transform.LookAt(target);
+
+                // Keep the camera above the target y position
+                if (tPos.y < target.position.y)
+                {
+                    tPos.y = target.position.y;
+                }
+
+                // Set transform with lerp
+                transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);
+                transform.rotation = Quaternion.Lerp(curRot, transform.rotation, Time.fixedDeltaTime * lerpRotationMultiplier);
+
+                // Keep camera above the y:0.5f to prevent camera going underground
+                if (transform.position.y < 0.5f)
+                {
+                    transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+                }
+
+                // Update speedometer
+                if (vehicle != null)
+                {
+                    _context.Speed = (int)Mathf.Abs(vehicle.Speed);
+                }
+            }
+            
+            
+            
+
+           
+
+
+            //отделение/приближение колесом мышки
+            float mw = Input.GetAxis("Mouse ScrollWheel");
+            if (mw != 0)
+            { 
+                offset.z += offset.z * Time.deltaTime * -mw * wheel_speed;
+                offset.y += offset.y * Time.deltaTime * -mw * wheel_speed/2;
+
+                if (offset.z > -10f)
+                    offset.z = -10f;
+                if (offset.y < 4.7f)
+                    offset.y = 4.7f;
+
+                if (offset.z < -30f)
+                    offset.z = -30f;
+                if (offset.y > 18f)
+                    offset.y = 18f;
             }
 
-            // Set transform with lerp
-            transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);
-            transform.rotation = Quaternion.Lerp(curRot, transform.rotation, Time.fixedDeltaTime * lerpRotationMultiplier);
+           
+        }
 
-            // Keep camera above the y:0.5f to prevent camera going underground
-            if (transform.position.y < 0.5f)
-            {
-                transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
-            }
-
-            // Update speedometer
-            if (vehicle != null)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Speed:");
-                sb.Append(((int)(vehicle.Speed)).ToString());
-                sb.Append(" Kph");
-
-                _context.Speed = (int)Mathf.Abs(vehicle.Speed);
-
-             //   _telemetryScreenViewModel.Speed = (int)(vehicle.Speed);
-             //speedometer.text = sb.ToString();
-            }
-
+        private float GetInput(string input)
+        {
+            return Input.GetAxis(input);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace VehicleBehaviour
         [SerializeField] string turnInput = "Horizontal";
         [SerializeField] string jumpInput = "Jump";
         [SerializeField] string brakeInput = "Brake";
-        [SerializeField] string driftInput = "Drift";
+       // [SerializeField] string driftInput = "Drift";
         [SerializeField] string boostInput = "Boost";
         
         /* 
@@ -257,7 +257,7 @@ namespace VehicleBehaviour
                 // Turn
                 steering = turnInputCurve.Evaluate(GetInput(turnInput)) * steerAngle;
                 // Dirft
-                drift = GetInput(driftInput) > 0 && _rb.velocity.sqrMagnitude > 100;
+              //  drift = GetInput(driftInput) > 0 && _rb.velocity.sqrMagnitude > 100;
                 // Jump
                 jumping = GetInput(jumpInput) != 0;
             }

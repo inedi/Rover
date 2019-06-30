@@ -628,6 +628,7 @@
     <Compile Include="Assets\Scripts\FlyCameraScript.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\RenderCameraToTelemetryScreenXaml.cs" />
+    <Compile Include="Assets\Scripts\RotateSkybox.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\EngineSoundManager.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\Suspension.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\WheelVehicle.cs" />
@@ -635,7 +636,9 @@
     <Compile Include="Assets\Views\MainView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs" />
+    <None Include="Assets\Shaders\SkyBoxCubemapShader.shader" />
     <None Include="Assets\NoesisGUI\LICENSE.txt" />
+    <None Include="Assets\Shaders\blend cubemaps shader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/inedi/Desktop/Git/Rover/Moon Rover/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
