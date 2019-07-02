@@ -19,8 +19,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <views:TelemetryScreenView x:Name="telemetryScreenView"
-            Visibility="Visible"/>
+            Visibility="Collapsed"/>
         <views:SecondScreenIView 
+            Grid.Column="1"
+            Visibility="Collapsed"/>
+        <views:HudOptionsScreenView  x:Name="hudOptionsScreenView"
             Grid.Column="1"
             Visibility="Visible"/>
 

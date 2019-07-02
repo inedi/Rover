@@ -1,22 +1,32 @@
-﻿// Rotation stars (0,0,0) - Polar star orientation (earth nord)
+﻿// INEDI apps (c)
+// 
+// Rotation stars (0,0,0) - Polar star orientation (earth nord)
 // Rotation stars (0,0,0) - Polar star orientation (moon nord)
-// RotationX stars - use for 0h longitude set
+// RotationX stars - use for 0h longitude set (нулевой отметкой является место на небе, где Солнце пересекает небесный экватор в весеннее равноденствие)
 // _RotationX - use in unity for simulate rotate planet
+// use Exposure = 0 for off overlay textures
 
 Shader "INEDI/SkyBoxCubemapShader"
 {
 	Properties{
-		 _Tint("Tint Color", Color) = (.5, .5, .5, .5)
-		 [Gamma] _Exposure("Exposure", Range(0, 8)) = 1.0
-		 [NoScaleOffset] _Tex("Cubemap (HDR) StarMap", Cube) = "grey" {}
-		 [NoScaleOffset] _Tex2("Cubemap (HDR) Figures", Cube) = "grey" {}
-		 [NoScaleOffset] _Tex3("Cubemap (HDR) Grid", Cube) = "grey" {}
-		 _RotationX("RotationX", Range(0, 360)) = 0
-		 _RotationY("RotationY", Range(0, 360)) = 0
-		 _RotationZ("RotationZ", Range(0, 360)) = 0
-		 _RotationX2("RotationX stars", Range(0, 360)) = 0
-		 _RotationY2("RotationY stars", Range(0, 360)) = 0
-		 _RotationZ2("RotationZ stars", Range(0, 360)) = 0
+		[Gamma] _Exposure("Exposure StarMap", Range(0, 8)) = 1.0
+		_Tint("Tint StarMap", Color) = (.5, .5, .5, .5)
+		[NoScaleOffset] _Tex("Cubemap (HDR) StarMap", Cube) = "grey" {}
+
+		[Gamma] _Exposure2("Exposure Figures", Range(0, 8)) = 1.0
+		_Tint2("Tint Figures", Color) = (.5, .5, .5, 1)
+		[NoScaleOffset] _Tex2("Cubemap (HDR) Figures", Cube) = "grey" {}
+
+		[Gamma] _Exposure3("Exposure Grid", Range(0, 8)) = 1.0
+		_Tint3("Tint Grid", Color) = (.5, .5, .5, 1)
+		[NoScaleOffset] _Tex3("Cubemap (HDR) Grid", Cube) = "grey" {}
+
+		_RotationX("RotationX", Range(0, 360)) = 0
+		_RotationY("RotationY", Range(0, 360)) = 0
+		_RotationZ("RotationZ", Range(0, 360)) = 0
+		_RotationX2("RotationX stars", Range(0, 360)) = 0
+		_RotationY2("RotationY stars", Range(0, 360)) = 0
+		_RotationZ2("RotationZ stars", Range(0, 360)) = 0
 	}
 
 	SubShader{
@@ -30,12 +40,26 @@ Shader "INEDI/SkyBoxCubemapShader"
 
 				#include "UnityCG.cginc"
 
+			struct appdata_t {
+				float4 vertex : POSITION;
+			};
+
+			struct v2f {
+				float4 pos : SV_POSITION;
+				float3 uvstars : TEXCOORD0;
+				float3 uvgrid : TEXCOORD1;
+			};
+
 			samplerCUBE _Tex;
 			samplerCUBE _Tex2;
 			samplerCUBE _Tex3;
 			half4 _Tex_HDR;
-			half4 _Tint;
 			half _Exposure;
+			half _Exposure2;
+			half _Exposure3;
+			half4 _Tint;
+			half4 _Tint2;
+			half4 _Tint3;
 			float _RotationX;
 			float _RotationY;
 			float _RotationZ;
@@ -51,16 +75,6 @@ Shader "INEDI/SkyBoxCubemapShader"
 				float2x2 m = float2x2(cosa, -sina, sina, cosa);
 				return float3(mul(m, vertex.xz), vertex.y).zyx;
 			}
-
-			struct appdata_t {
-				float4 vertex : POSITION;
-			};
-
-			struct v2f {
-				float4 pos : SV_POSITION;
-				float3 uvstars : TEXCOORD0;
-				float3 uvgrid : TEXCOORD1;
-			};
 
 			v2f vert(appdata_t v)
 			{
@@ -86,14 +100,22 @@ Shader "INEDI/SkyBoxCubemapShader"
 
 			fixed4 frag(v2f input) : SV_Target
 			{
-				float4 tex1 = texCUBE(_Tex, input.uvstars);
-				float4 tex2 = texCUBE(_Tex2, input.uvstars);
-				float4 tex3 = texCUBE(_Tex3, input.uvgrid);
-				float4 tex = tex1 + tex3 + tex2;
+				float4 tex1 = texCUBE(_Tex, input.uvstars) * _Tint  * _Exposure;
+				float4 tex = tex1;
+
+				if (_Exposure2 != 0) //figures draw
+				{
+					tex1 = texCUBE(_Tex2, input.uvstars)* _Tint2 * _Exposure2;
+					tex += tex1;
+				}
+				
+				if (_Exposure3 != 0) // grid draw
+				{
+					tex1 = texCUBE(_Tex3, input.uvgrid) * _Tint3 * _Exposure3;
+					tex += tex1;
+				}
 
 				half3 c = DecodeHDR(tex, _Tex_HDR);
-				c = c * _Tint.rgb * unity_ColorSpaceDouble.rgb;
-				c *= _Exposure;
 
 				return half4(c, 1);
 			}

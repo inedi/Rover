@@ -11,9 +11,10 @@ namespace Rover.Views
 {
     public partial class TelemetryScreenView : UserControl
     {
+        TelemetryScreenViewModel _context = new TelemetryScreenViewModel();
         public TelemetryScreenView()
         {
-            DataContext = new TelemetryScreenViewModel();
+            DataContext = _context;
             InitializeComponent();
         }
 

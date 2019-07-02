@@ -632,8 +632,10 @@
     <Compile Include="Assets\Scripts\RoverEngine\EngineSoundManager.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\Suspension.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\WheelVehicle.cs" />
+    <Compile Include="Assets\ViewModels\HudOptionsScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs" />
+    <Compile Include="Assets\Views\Screens\HudOptionsScreenView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs" />
     <None Include="Assets\Shaders\test3.shader" />

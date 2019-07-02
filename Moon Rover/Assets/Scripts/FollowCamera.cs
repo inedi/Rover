@@ -104,9 +104,6 @@ namespace VehicleBehaviour.Utils
 
 
 
-            
-
-
             mouseLook = GetInput(mouseLookInput) > 0;
 
             if (mouseLook && allowMouseLook)

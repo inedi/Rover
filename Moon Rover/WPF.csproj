@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\Views\Screens\HudOptionsScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Views\Screens\SecondScreenIView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,9 +106,13 @@
     <Compile Include="Assets\Mvvm\WeakAction.cs" />
     <Compile Include="Assets\Mvvm\WeakActionT.cs" />
     <Compile Include="Assets\Mvvm\WeakFunc.cs" />
+    <Compile Include="Assets\ViewModels\HudOptionsScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Views\Screens\HudOptionsScreenView.xaml.cs">
+      <DependentUpon>HudOptionsScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs">
       <DependentUpon>SecondScreenIView.xaml</DependentUpon>

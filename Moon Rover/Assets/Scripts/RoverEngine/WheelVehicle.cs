@@ -35,7 +35,7 @@ namespace VehicleBehaviour
         [SerializeField] string throttleInput = "Throttle";
         [SerializeField] string turnInput = "Horizontal";
         [SerializeField] string jumpInput = "Jump";
-        [SerializeField] string brakeInput = "Brake";
+       // [SerializeField] string brakeInput = "Brake";
        // [SerializeField] string driftInput = "Drift";
         [SerializeField] string boostInput = "Boost";
         
@@ -248,9 +248,9 @@ namespace VehicleBehaviour
             if (isPlayer)
             {
                 // Accelerate & brake
-                if (throttleInput != "" && throttleInput != null)
+                if (throttleInput != "" && throttleInput != null )
                 {
-                    throttle = GetInput(throttleInput) - GetInput(brakeInput);
+                    throttle = GetInput(throttleInput); //- GetInput(brakeInput);
                 }
                 // Boost
                 boosting = (GetInput(boostInput) > 0.5f);
