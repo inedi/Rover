@@ -18,7 +18,7 @@ Shader "Custom/testShader"
 			Tags { "Queue" = "Background" "RenderType" = "Background" "PreviewType" = "Skybox" }
 			Cull Off ZWrite Off
 
-		//Blend One OneMinusSrcColor
+		Blend One OneMinusSrcColor
 			Pass {
 
 				CGPROGRAM
@@ -70,9 +70,14 @@ Shader "Custom/testShader"
 					float4 env1 = texCUBE(_Tex, i.texcoord);
 					float4 env2 = texCUBE(_Tex2, i.texcoord);
 					float4 env3 = texCUBE(_Tex3, i.texcoord);
-					float4 env = env1 + env2 + env3;
-					half3 c = DecodeHDR(env, _Tex_HDR);
+					float4 env = env1;// +env2 + env3;
+					//half3 c = DecodeHDR(env, _Tex_HDR);
 				
+					float4 tint = lerp(_Tint, _Tint2, _BlendCubemaps);
+					half3 c = DecodeHDR(env, _Tex_HDR);
+					c = c * tint.rgb * unity_ColorSpaceDouble;
+					c *= _Exposure;
+
 					return half4(c, 1);
 				}
 				ENDCG

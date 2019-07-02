@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CubeMap:
-        m_Texture: {fileID: 8900000, guid: 5a7c845746ff6124da4c0cec92eb4a5b, type: 3}
+        m_Texture: {fileID: 8900000, guid: d20296d163f720449947672b4abcd91c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DownTex:
@@ -44,15 +44,47 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OverlayTex:
-        m_Texture: {fileID: 8900000, guid: 905d014548ad9c44c8c8e704d05cb970, type: 3}
+        m_Texture: {fileID: 8900000, guid: bf8d1d370e9b2924793e4fddb97d3806, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RightTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Skybox2:
+        m_Texture: {fileID: 8900000, guid: d20296d163f720449947672b4abcd91c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Tex:
-        m_Texture: {fileID: 8900000, guid: 5a7c845746ff6124da4c0cec92eb4a5b, type: 3}
+        m_Texture: {fileID: 8900000, guid: 25f50b1db3758374e8b5a0ee572fbbd5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex2:
+        m_Texture: {fileID: 8900000, guid: fda5233865c328c46b81850e37aaa612, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex3:
+        m_Texture: {fileID: 8900000, guid: d20296d163f720449947672b4abcd91c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 50, y: 300}
+    - _Tex4:
+        m_Texture: {fileID: 8900000, guid: fda5233865c328c46b81850e37aaa612, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexBoundaries:
+        m_Texture: {fileID: 8900000, guid: dbc3e7d9beba85549ac01540b3093936, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexFigures:
+        m_Texture: {fileID: 8900000, guid: fda5233865c328c46b81850e37aaa612, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexGrid:
+        m_Texture: {fileID: 8900000, guid: d20296d163f720449947672b4abcd91c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexStarMap:
+        m_Texture: {fileID: 8900000, guid: 47533e3608506f74a8568f215a6a2bff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UpTex:
@@ -60,7 +92,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Blend: 0.165
+    - _Blend: 0
+    - _BlendCubemaps: 0.5
     - _Brightness: 0.5
     - _Exposure: 1
     - _ImageType: 0
@@ -68,12 +101,18 @@ Material:
     - _Mapping: 1
     - _MirrorOnBack: 0
     - _Rotation: 0
+    - _Rotation2: 0
     - _RotationX: 0
+    - _RotationX2: 0
     - _RotationY: 0
+    - _RotationY2: 0
     - _RotationZ: 0
+    - _RotationZ2: 0
     m_Colors:
     - _Axis: {r: 0, g: 0, b: 0, a: 0}
     - _BackgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Counters: {r: 1, g: 1, b: 1, a: 1}
     - _RotationAxis: {r: 0, g: 1, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _Tint2: {r: 0.5, g: 0.5, b: 0.5, a: 1}
