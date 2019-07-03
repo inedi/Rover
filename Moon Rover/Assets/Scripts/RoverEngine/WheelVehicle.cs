@@ -4,6 +4,8 @@
  * This is distributed under the MIT Licence (see LICENSE.md for details)
  */
 
+using Rover.ViewModels;
+using Rover.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace VehicleBehaviour
     [RequireComponent(typeof(Rigidbody))]
     public class WheelVehicle : MonoBehaviour
     {
+        TelemetryScreenViewModel _context;
 
         [SerializeField] Camera noesisCamera;
 
@@ -196,6 +199,10 @@ namespace VehicleBehaviour
 #if MULTIOSCONTROLS
             Debug.Log("[ACP] Using MultiOSControls");
 #endif
+            var view = noesisCamera.GetComponent<NoesisView>().Content;
+            var telemetryview = (TelemetryScreenView)view.FindName("telemetryScreenView");
+            _context = (TelemetryScreenViewModel)telemetryview.DataContext;
+
             if (boostClip != null)
             {
                 boostSource.clip = boostClip;
@@ -236,6 +243,8 @@ namespace VehicleBehaviour
                 boost += Time.deltaTime * boostRegen;
                 if (boost > maxBoost) { boost = maxBoost; }
             }
+
+            _context.Speed = (int)Mathf.Abs(this.Speed);
         }
 
         // Update everything

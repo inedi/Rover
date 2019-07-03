@@ -29,10 +29,10 @@ public class FlyCameraScript : MonoBehaviour
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
 
-    void Start()
-    {
-        Screen.lockCursor = false;
-    }
+    //void Start()
+    //{
+    //    Screen.lockCursor = false;
+    //}
 
     void Update()
     {
@@ -67,10 +67,10 @@ public class FlyCameraScript : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
-        }
+        //if (Input.GetKeyDown(KeyCode.End))
+        //{
+        //    Screen.lockCursor = (Screen.lockCursor == false) ? true : false;
+        //}
        
     }
  }

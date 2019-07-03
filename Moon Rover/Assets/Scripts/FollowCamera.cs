@@ -6,9 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Noesis;
-using Rover.ViewModels;
-using Rover.Views;
 
 namespace VehicleBehaviour.Utils
 {
@@ -17,7 +14,7 @@ namespace VehicleBehaviour.Utils
         [SerializeField] Camera noesisCamera;
         
         //UI datacontext
-        TelemetryScreenViewModel _context;
+      //  TelemetryScreenViewModel _context;
 
         //mouselook
 
@@ -66,9 +63,9 @@ namespace VehicleBehaviour.Utils
         {
             rb = GetComponent<Rigidbody>();
 
-            var view = noesisCamera.GetComponent<NoesisView>().Content;
-            var telemetryview = (TelemetryScreenView)view.FindName("telemetryScreenView");
-            _context = (TelemetryScreenViewModel)telemetryview.DataContext;
+            //var view = noesisCamera.GetComponent<NoesisView>().Content;
+            //var telemetryview = (TelemetryScreenView)view.FindName("telemetryScreenView");
+            //_context = (TelemetryScreenViewModel)telemetryview.DataContext;
 
             SetTargetIndex(0);
 
@@ -95,7 +92,6 @@ namespace VehicleBehaviour.Utils
             if (vehicle != null)
             {
                 vehicle.IsPlayer = true;
-                vehicle.Handbrake = false;
             }
         }
 
@@ -133,26 +129,28 @@ namespace VehicleBehaviour.Utils
                 transform.LookAt(target);
 
                 // Keep the camera above the target y position
-                if (tPos.y < target.position.y)
-                {
-                    tPos.y = target.position.y;
-                }
+                //if (tPos.y < target.position.y)
+                //{
+                //    tPos.y = target.position.y;
+                //}
 
                 // Set transform with lerp
                 transform.position = Vector3.Lerp(transform.position, tPos, Time.fixedDeltaTime * lerpPositionMultiplier);
                 transform.rotation = Quaternion.Lerp(curRot, transform.rotation, Time.fixedDeltaTime * lerpRotationMultiplier);
+             
 
                 // Keep camera above the y:0.5f to prevent camera going underground
                 if (transform.position.y < 0.5f)
                 {
                     transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
                 }
+               
 
                 // Update speedometer
-                if (vehicle != null)
-                {
-                    _context.Speed = (int)Mathf.Abs(vehicle.Speed);
-                }
+                //if (vehicle != null)
+                //{
+                //    _context.Speed = (int)Mathf.Abs(vehicle.Speed);
+                //}
             }
             
             
@@ -164,14 +162,15 @@ namespace VehicleBehaviour.Utils
             //отделение/приближение колесом мышки
             float mw = Input.GetAxis("Mouse ScrollWheel");
             if (mw != 0)
-            { 
+            {
+                
                 offset.z += offset.z * Time.deltaTime * -mw * wheel_speed;
-                offset.y += offset.y * Time.deltaTime * -mw * wheel_speed/2;
+                offset.y += offset.y * Time.deltaTime * -mw * wheel_speed;
 
                 if (offset.z > -10f)
                     offset.z = -10f;
-                if (offset.y < 4.7f)
-                    offset.y = 4.7f;
+                if (offset.y < 0.5f)
+                    offset.y = 0.5f;
 
                 if (offset.z < -30f)
                     offset.z = -30f;

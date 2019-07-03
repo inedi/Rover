@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" 
+             >
     <Grid>
         <StackPanel Width="300" HorizontalAlignment="Right">
             <TextBlock Foreground="White">
@@ -16,8 +17,7 @@
                     Maximum="8"
                     LargeChange="1"
                     SmallChange="0.1"
-                    IsSnapToTickEnabled="True"
-                    TickFrequency="0.01"/>
+                    IsTabStop="False"/>
             
             <TextBlock Foreground="White">
                 <Run Text="Figures "/>
@@ -28,8 +28,7 @@
                     Maximum="8"
                     LargeChange="1"
                     SmallChange="0.1"
-                    IsSnapToTickEnabled="True"
-                    TickFrequency="0.01"/>
+                    IsTabStop="False"/>
 
             <TextBlock Foreground="White">
                 <Run Text="Grid "/>
@@ -39,7 +38,8 @@
                     Minimum="0"
                     Maximum="8"
                     LargeChange="1"
-                    SmallChange="0.1"/>
+                    SmallChange="0.1"
+                    IsTabStop="False"/>
         </StackPanel>
     </Grid>
 </UserControl>
