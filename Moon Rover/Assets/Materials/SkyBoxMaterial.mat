@@ -97,14 +97,14 @@ Material:
     - _Brightness: 0.5
     - _Exposure: 1
     - _Exposure2: 0
-    - _Exposure3: 0
+    - _Exposure3: 0.1
     - _ImageType: 0
     - _Layout: 0
     - _Mapping: 1
     - _MirrorOnBack: 0
     - _Rotation: 0
     - _Rotation2: 0
-    - _RotationX: 0
+    - _RotationX: 30.128656
     - _RotationX2: 0
     - _RotationY: 0
     - _RotationY2: 0
@@ -118,4 +118,4 @@ Material:
     - _RotationAxis: {r: 0, g: 1, b: 0, a: 1}
     - _Tint: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     - _Tint2: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    - _Tint3: {r: 0.5, g: 0.5019608, b: 0.5019608, a: 1}
+    - _Tint3: {r: 1, g: 0, b: 0, a: 1}

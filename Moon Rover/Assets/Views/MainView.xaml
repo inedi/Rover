@@ -19,7 +19,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <views:TelemetryScreenView x:Name="telemetryScreenView"
-            Visibility="Visible"/>
+            Visibility="Collapsed"/>
         <views:SecondScreenIView 
             Grid.Column="1"
             Visibility="Collapsed"/>
@@ -27,10 +27,14 @@
             Grid.Column="1"
             Visibility="Visible"/>
 
-        <Menu Width="200" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Menu  VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Menu">
-                <MenuItem Header="Screen1"/>
-                <MenuItem Header="Screen2"/>
+                <MenuItem Header="View" >
+                    <MenuItem Header="Cabin view" IsCheckable="True"/>
+                    <MenuItem Header="Rover view" IsCheckable="True" IsChecked="True"/>
+                    <MenuItem Header="Character view" IsCheckable="True"/>
+                </MenuItem>
+                <MenuItem Header="HUD" IsCheckable="True" IsChecked="True"/>
             </MenuItem>
         </Menu>
         

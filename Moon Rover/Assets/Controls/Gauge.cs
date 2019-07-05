@@ -17,8 +17,7 @@ namespace Rover.Controls
 
         public static readonly DependencyProperty WarningValueProperty = DependencyProperty.Register("WarningValue", typeof(int), typeof(Gauge), new UIPropertyMetadata(0));
 
-
-
+        
         #endregion
 
         #region Instance properties

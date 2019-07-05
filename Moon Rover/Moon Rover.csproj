@@ -1201,8 +1201,10 @@
     <Compile Include="Assets\Scripts\RoverEngine\EngineSoundManager.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\Suspension.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\WheelVehicle.cs" />
+    <Compile Include="Assets\ViewModels\HudOptionsScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs" />
+    <Compile Include="Assets\Views\Screens\HudOptionsScreenView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\SecondScreenIView.xaml.cs" />
     <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs" />
   </ItemGroup>
@@ -1211,6 +1213,7 @@
     <None Include="Assets\NoesisGUI\Plugins\Editor\version.txt" />
     <None Include="Assets\Shaders\SkyBoxCubemapShader.shader" />
     <None Include="Assets\Shaders\blend cubemaps shader.shader" />
+    <None Include="Assets\Shaders\test3.shader" />
     <None Include="Packages\com.unity.analytics\DataPrivacy\Unity.Analytics.DataPrivacy.asmdef" />
     <None Include="Packages\com.unity.analytics\Tests\Editor\Unity.Analytics.StandardEvents\Unity.Analytics.StandardEvents.EditorTests.asmdef" />
     <None Include="Packages\com.unity.analytics\Tests\Runtime\DataPrivacy\Unity.Analytics.DataPrivacy.Tests.asmdef" />
