@@ -95,16 +95,16 @@ Material:
     - _Blend: 0
     - _BlendCubemaps: 0.5
     - _Brightness: 0.5
-    - _Exposure: 1
-    - _Exposure2: 0
-    - _Exposure3: 0.1
+    - _Exposure: 3.44
+    - _Exposure2: 2.43
+    - _Exposure3: 0
     - _ImageType: 0
     - _Layout: 0
     - _Mapping: 1
     - _MirrorOnBack: 0
     - _Rotation: 0
     - _Rotation2: 0
-    - _RotationX: 30.128656
+    - _RotationX: 21.032785
     - _RotationX2: 0
     - _RotationY: 0
     - _RotationY2: 0
