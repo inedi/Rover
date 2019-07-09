@@ -1,2 +1,5 @@
 # Rover
-inedi Unity + Noesis GUI test 
+Unity + Noesis GUI project
+
+WARNING!
+Project in development
