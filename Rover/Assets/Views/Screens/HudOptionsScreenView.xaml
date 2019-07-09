@@ -30,8 +30,8 @@
             <ComboBox ItemsSource="{Binding StarColors}"
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"
-                      SelectedItem="{Binding SelectedItem}"
-                      IsSynchronizedWithCurrentItem="True"/>
+                      SelectedValue="{Binding StarBrush}"
+                      IsSynchronizedWithCurrentItem="True" />
 
             <TextBlock Foreground="White">
                 <Run Text="Figures "/>
@@ -43,6 +43,13 @@
                     LargeChange="1"
                     SmallChange="0.1"
                     />
+            <TextBlock Text="Star Color"/>
+            <ComboBox ItemsSource="{Binding FigureColors}"
+                      ItemTemplate="{StaticResource ColorsDataTemplate}"
+                      SelectedValuePath="Color"
+                      SelectedValue="{Binding FigureBrush}"
+                      IsSynchronizedWithCurrentItem="True" />
+            
 
             <TextBlock Foreground="White">
                 <Run Text="Grid "/>
@@ -54,6 +61,12 @@
                     LargeChange="1"
                     SmallChange="0.1"
                    />
+            <TextBlock Text="Star Color"/>
+            <ComboBox ItemsSource="{Binding GridColors}"
+                      ItemTemplate="{StaticResource ColorsDataTemplate}"
+                      SelectedValuePath="Color"
+                      SelectedValue="{Binding GridBrush}"
+                      IsSynchronizedWithCurrentItem="True" />
         </StackPanel>
     </Grid>
 </UserControl>

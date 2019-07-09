@@ -22,7 +22,6 @@ namespace RoverGUI.ViewModels
         public TelemetryScreenViewModel()
         {
             IsHandBrake = false;
-           // Speed = 13.2d;
         }
 
     }

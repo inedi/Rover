@@ -11,23 +11,18 @@ namespace RoverGUI.Data.Repositories
 {
     internal static class StarColorRepository
     {
-        private static List<StarColor> _starColors;
-
-        internal static List<StarColor> StarColors
-        {
-            get { return _starColors; }
-        }
+        internal static List<StarColor> StarColors { get; private set; }
 
         internal static void Load()
         {
-            _starColors = new List<StarColor>();
+            StarColors = new List<StarColor>();
 
             // SolidColorBrush mySolidColorBrush = new SolidColorBrush();
-            _starColors.Add(new StarColor { Name = "Default", Color = new SolidColorBrush(Color.FromRgb(128, 128, 128)) });
-            _starColors.Add(new StarColor { Name = "Red", Color = new SolidColorBrush(Colors.Red) });
-            _starColors.Add(new StarColor { Name = "Green", Color = new SolidColorBrush(Colors.Green) });
+            StarColors.Add(new StarColor { Name = "Default", Color = new SolidColorBrush(Colors.White) });
+            StarColors.Add(new StarColor { Name = "Red", Color = new SolidColorBrush(Colors.Red) });
+            StarColors.Add(new StarColor { Name = "Green", Color = new SolidColorBrush(Colors.Green) });
+            StarColors.Add(new StarColor { Name = "Blue", Color = new SolidColorBrush(Colors.Blue) });
 
-           
         }
     }
 }
