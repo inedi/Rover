@@ -16,6 +16,13 @@
     </UserControl.Resources>
     <Grid KeyboardNavigation.TabNavigation="None">
         <StackPanel Width="300" HorizontalAlignment="Right">
+            <TextBlock x:Name="FPSTextBlock"
+                       Foreground="White"
+                       Margin="0,0,0,20">
+                <Run Text="FPS: "/>
+                <Run Text="{Binding FPScounter}"/>
+            </TextBlock>
+            
             <TextBlock Foreground="White">
                 <Run Text="Stars "/>
                 <Run Text="{Binding ExposureStars}"/>
@@ -31,7 +38,8 @@
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"
                       SelectedValue="{Binding StarBrush}"
-                      IsSynchronizedWithCurrentItem="True" />
+                      SelectedIndex="0"
+                      />
 
             <TextBlock Foreground="White">
                 <Run Text="Figures "/>
@@ -44,12 +52,13 @@
                     SmallChange="0.1"
                     />
             <TextBlock Text="Star Color"/>
-            <ComboBox ItemsSource="{Binding FigureColors}"
+            <ComboBox ItemsSource="{Binding StarColors}"
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"
                       SelectedValue="{Binding FigureBrush}"
-                      IsSynchronizedWithCurrentItem="True" />
-            
+                      SelectedIndex="3"
+                      />
+
 
             <TextBlock Foreground="White">
                 <Run Text="Grid "/>
@@ -62,11 +71,13 @@
                     SmallChange="0.1"
                    />
             <TextBlock Text="Star Color"/>
-            <ComboBox ItemsSource="{Binding GridColors}"
+            <ComboBox ItemsSource="{Binding StarColors}"
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"
                       SelectedValue="{Binding GridBrush}"
-                      IsSynchronizedWithCurrentItem="True" />
+                      SelectedIndex="1"
+                      />
+            
         </StackPanel>
     </Grid>
 </UserControl>

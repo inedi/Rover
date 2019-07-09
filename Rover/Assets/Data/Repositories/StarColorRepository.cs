@@ -21,7 +21,7 @@ namespace RoverGUI.Data.Repositories
             StarColors.Add(new StarColor { Name = "Default", Color = new SolidColorBrush(Colors.White) });
             StarColors.Add(new StarColor { Name = "Red", Color = new SolidColorBrush(Colors.Red) });
             StarColors.Add(new StarColor { Name = "Green", Color = new SolidColorBrush(Colors.Green) });
-            StarColors.Add(new StarColor { Name = "Blue", Color = new SolidColorBrush(Colors.Blue) });
+            StarColors.Add(new StarColor { Name = "Sky blue", Color = new SolidColorBrush(Color.FromRgb(136, 175, 255)) });
 
         }
     }

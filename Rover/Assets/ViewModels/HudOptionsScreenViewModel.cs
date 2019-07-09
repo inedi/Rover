@@ -31,56 +31,6 @@ namespace RoverGUI.ViewModels
             set { SetValue(value); }
         }
 
-        public List<StarColor> FigureColors
-        {
-            get { return GetValue<List<StarColor>>(); }
-            set { SetValue(value); }
-        }
-
-        public List<StarColor> GridColors
-        {
-            get { return GetValue<List<StarColor>>(); }
-            set { SetValue(value); }
-        }
-
-#if UNITY_5_3_OR_NEWER
-        public UnityEngine.Color StarColor
-        {
-            get { return GetValue<UnityEngine.Color>(); }
-            set
-            {
-                if (SetValue(value))
-                {
-                    RenderSettings.skybox.SetColor("_Tint", value);
-                }
-            }
-        }
-
-        public UnityEngine.Color FigureColor
-        {
-            get { return GetValue<UnityEngine.Color>(); }
-            set
-            {
-                if (SetValue(value))
-                {
-                    RenderSettings.skybox.SetColor("_Tint2", value);
-                }
-            }
-        }
-
-        public UnityEngine.Color GridColor
-        {
-            get { return GetValue<UnityEngine.Color>(); }
-            set
-            {
-                if (SetValue(value))
-                {
-                    RenderSettings.skybox.SetColor("_Tint3", value);
-                }
-            }
-        }
-#endif
-
         public SolidColorBrush StarBrush
         {
             get { return GetValue<SolidColorBrush>(); }
@@ -129,6 +79,44 @@ namespace RoverGUI.ViewModels
             }
         }
 
+#if UNITY_5_3_OR_NEWER
+        public UnityEngine.Color StarColor
+        {
+            get { return GetValue<UnityEngine.Color>(); }
+            set
+            {
+                if (SetValue(value))
+                {
+                    RenderSettings.skybox.SetColor("_Tint", value);
+                }
+            }
+        }
+
+        public UnityEngine.Color FigureColor
+        {
+            get { return GetValue<UnityEngine.Color>(); }
+            set
+            {
+                if (SetValue(value))
+                {
+                    RenderSettings.skybox.SetColor("_Tint2", value);
+                }
+            }
+        }
+
+        public UnityEngine.Color GridColor
+        {
+            get { return GetValue<UnityEngine.Color>(); }
+            set
+            {
+                if (SetValue(value))
+                {
+                    RenderSettings.skybox.SetColor("_Tint3", value);
+                }
+            }
+        }
+#endif
+
         public float ExposureStars
         {
             get { return GetValue<float>(); }
@@ -173,7 +161,7 @@ namespace RoverGUI.ViewModels
 
         public HudOptionsScreenViewModel()
         {
-            //load sky exposures settings
+            // load sky exposures settings
             ExposureStars = 1f;
             ExposureFigures = 0f;
             ExposureGrid = 0f;
@@ -181,9 +169,12 @@ namespace RoverGUI.ViewModels
             // load sky colors settings
             StarColorRepository.Load();
             StarColors = StarColorRepository.StarColors;
-            FigureColors = StarColorRepository.StarColors;
-            GridColors = StarColorRepository.StarColors;
 
+            // Why not work in Noesis???
+            // for bugfix use SelectedIndex="X"...  trouble
+            //StarBrush = StarColors[0].Color;
+            //FigureBrush = StarColors[3].Color;
+            //GridBrush = StarColors[1].Color;
 
         }
     }

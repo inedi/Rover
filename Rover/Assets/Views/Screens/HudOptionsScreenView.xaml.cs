@@ -23,10 +23,7 @@ namespace RoverGUI.Views
         private void InitializeComponent()
         {
             Noesis.GUI.LoadComponent(this, "Assets/Views/Screens/HudOptionsScreenView.xaml");
-
-            _context.ExposureStars = RenderSettings.skybox.GetFloat("_Exposure"); 
-            _context.ExposureFigures = RenderSettings.skybox.GetFloat("_Exposure2"); 
-            _context.ExposureGrid = RenderSettings.skybox.GetFloat("_Exposure3"); 
+            
         }
 #endif
     }
