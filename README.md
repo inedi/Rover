@@ -1,4 +1,4 @@
 # Rover
-INEDI apps Unity + Noesis GUI project
+Unity + Noesis GUI project
 
 
