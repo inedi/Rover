@@ -6,7 +6,47 @@ ModelImporter:
   - first:
       74: 1989289236423521904
     second: Default Take
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 1f93dd21eba5f274780dc53ca583cd64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001_001
+    second: {fileID: 2100000, guid: 41825bad2a5964e44b0d9bedbafddd20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Moon
+    second: {fileID: 2100000, guid: 56b869b701effd64fac621fb4a835c8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Radiator_black
+    second: {fileID: 2100000, guid: b2f83fb1ecbad24459d33eeac8ccd82b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rover_gray
+    second: {fileID: 2100000, guid: f146385488cc5804bafcebcd49fbd1a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rover_red
+    second: {fileID: 2100000, guid: c499ec82561301742a4246ec37029ae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rover_white
+    second: {fileID: 2100000, guid: ddd6968289e368a4c82abd8df6a5185f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: 4e2092c7c333c5a44ac23c7230669942, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
