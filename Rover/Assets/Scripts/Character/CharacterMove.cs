@@ -1,12 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.InputSystem;
 
 public class CharacterMove : MonoBehaviour
 {
-    [SerializeField] private string horizontalInputName;
+  //  private InputAction movement;
+  //  [Space] [SerializeField] private InputActionAsset inputActionAsset;
 
-    [SerializeField] private string verticalInputName;
+
+
 
     [SerializeField] private float movementSpeed;
 
@@ -23,28 +25,25 @@ public class CharacterMove : MonoBehaviour
     [SerializeField] private KeyCode jumpKey;
 
 
-
-
-
     private bool isJumping;
 
 
-
     private void Awake()
-
     {
-
         charController = GetComponent<CharacterController>();
         slopeLimit = charController.slopeLimit;
     }
 
-
+    private void FixedUpdate()
+    {
+        
+    }
 
     private void Update()
 
     {
 
-        PlayerMovement();
+       // PlayerMovement();
 
     }
 
@@ -54,23 +53,23 @@ public class CharacterMove : MonoBehaviour
 
     {
 
-        float horizInput = Input.GetAxis(horizontalInputName) * movementSpeed;
+     //   float horizInput = Input.GetAxis(horizontalInputName) * movementSpeed;
 
-        float vertInput = Input.GetAxis(verticalInputName) * movementSpeed;
-
-
-
-        Vector3 forwardMovement = transform.forward * vertInput;
-
-        Vector3 rightMovement = transform.right * horizInput;
+       // float vertInput = Input.GetAxis(verticalInputName) * movementSpeed;
 
 
 
-        charController.SimpleMove(forwardMovement + rightMovement);
+        //Vector3 forwardMovement = transform.forward * vertInput;
+
+        //Vector3 rightMovement = transform.right * horizInput;
 
 
 
-        JumpInput();
+        //charController.SimpleMove(forwardMovement + rightMovement);
+
+
+
+        //JumpInput();
 
 
 

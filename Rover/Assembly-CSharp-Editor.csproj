@@ -80,6 +80,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/inedi/Desktop/Git/Rover/Rover/Rover/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>C:/Users/inedi/Desktop/Git/Rover/Rover/Rover/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/inedi/Desktop/Git/Rover/Rover/Rover/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

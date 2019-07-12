@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &381108142
 AudioListener:
   m_ObjectHideFlags: 0
@@ -970,7 +970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1063559240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,8 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a036f23830a2644b76d8bf4e23b5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalInputName: Horizontal
-  verticalInputName: Vertical
   movementSpeed: 4
   jumpFallOff:
     serializedVersion: 2
