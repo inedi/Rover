@@ -6,7 +6,6 @@ using Float = System.Single;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using Float = System.Double;
 #endif
 using System.ComponentModel;
@@ -20,18 +19,7 @@ namespace RoverGUI.Controls
     {
         public enum AlignmentOptions { Left, Center, Right };
 
-        public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register("Radius", typeof(double), typeof(RadialPanel), new PropertyMetadata(RadialPanel.RadiusChanged));
         public static readonly DependencyProperty AngleItemProperty = DependencyProperty.Register("AngleItem", typeof(double), typeof(RadialPanel), new PropertyMetadata(RadialPanel.AngleItemChanged));
-        public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register("StartAngle", typeof(double), typeof(RadialPanel), new PropertyMetadata(RadialPanel.StartAngleChanged));
-        public static readonly DependencyProperty AlignmentProperty = DependencyProperty.Register("Alignment", typeof(AlignmentOptions), typeof(RadialPanel), new PropertyMetadata(RadialPanel.AlignmentChanged));
-
-
-        [Category("Radial Panel")]
-        public double Radius
-        {
-            get { return (double)this.GetValue(RadialPanel.RadiusProperty); }
-            set { this.SetValue(RadialPanel.RadiusProperty, value); }
-        }
 
         [Category("Radial Panel")]
         public double AngleItem
@@ -40,6 +28,8 @@ namespace RoverGUI.Controls
             set { this.SetValue(RadialPanel.AngleItemProperty, value); }
         }
 
+        public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register("StartAngle", typeof(double), typeof(RadialPanel), new PropertyMetadata(RadialPanel.StartAngleChanged));
+
         [Category("Radial Panel")]
         public double StartAngle
         {
@@ -47,6 +37,7 @@ namespace RoverGUI.Controls
             set { this.SetValue(RadialPanel.StartAngleProperty, value); }
         }
 
+        public static readonly DependencyProperty AlignmentProperty = DependencyProperty.Register("Alignment", typeof(AlignmentOptions), typeof(RadialPanel), new PropertyMetadata(RadialPanel.AlignmentChanged));
         [Category("Radial Panel")]
         public AlignmentOptions Alignment
         {
@@ -54,7 +45,6 @@ namespace RoverGUI.Controls
             set { this.SetValue(RadialPanel.AlignmentProperty, value); }
         }
 
-        private static void RadiusChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { ((RadialPanel)sender).Refresh(); }
         private static void AngleItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { ((RadialPanel)sender).Refresh(); }
         private static void StartAngleChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { ((RadialPanel)sender).Refresh(); }
         private static void AlignmentChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e) { ((RadialPanel)sender).Refresh(); }
@@ -91,14 +81,9 @@ namespace RoverGUI.Controls
         private void Refresh()
         {
             int count = 0;
-            if (double.IsNaN(this.Width))
-            {
-                this.Width = 200;
-            }
-            if (double.IsNaN(this.Height))
-            {
-                this.Height = 200;
-            }
+            double wight = (this.DesiredSize.Width - this.Margin.Top - this.Margin.Bottom) / 2;
+            double height = (this.DesiredSize.Height - this.Margin.Left - this.Margin.Right) / 2;
+
 
             foreach (FrameworkElement element in this.Children)
             {
@@ -124,12 +109,12 @@ namespace RoverGUI.Controls
                 r.CenterY = (float)alignY;
                 r.Angle = ((float)AngleItem * count++) - (float)StartAngle;
                 element.RenderTransform = r;
-                double x = this.Radius * Math.Cos(Math.PI * r.Angle / 180);
-                double y = this.Radius * Math.Sin(Math.PI * r.Angle / 180);
+                double x = wight * Math.Cos(Math.PI * r.Angle / 180);
+                double y = height * Math.Sin(Math.PI * r.Angle / 180);
 
-                if (!(double.IsNaN(this.Width)) && !(double.IsNaN(this.Height)) && !(double.IsNaN(alignX)) && !(double.IsNaN(alignY)) && !(double.IsNaN(element.DesiredSize.Width)) && !(double.IsNaN(element.DesiredSize.Height)))
+                if (!(double.IsNaN(alignX)) && !(double.IsNaN(alignY)) && !(double.IsNaN(element.DesiredSize.Width)) && !(double.IsNaN(element.DesiredSize.Height)))
                 {
-                    element.Arrange(new Rect((float)x + (float)Width / 2 - (float)alignX, (float)y + (float)Height / 2 - (float)alignY, element.DesiredSize.Width, element.DesiredSize.Height));
+                    element.Arrange(new Rect((float)x + (float)wight - (float)alignX, (float)y + (float)height - (float)alignY, element.DesiredSize.Width, element.DesiredSize.Height));
                 }
             }
         }

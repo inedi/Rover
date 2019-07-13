@@ -51,32 +51,35 @@
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="False"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
-        
+        <Setter Property="AngleCoordinateRotation" Value="270"/>
+        <Setter Property="AngleOffset" Value="30"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Gauge">
-                    <Grid Width="370" Height="347">
-                        <Path  x:Name="PART_Path"
-                            VerticalAlignment="Top"
-                            Stretch="Fill"
+                    <Grid>
+                        <!--Поверка радиусов-->
+                        <!--<Ellipse Fill="Olive"/>-->
+                        <Path x:Name="Part_PathBackground"
+                            Stretch="None"
                             Stroke="{StaticResource HudBackgroundBrush}"
                             StrokeThickness="22"
                             StrokeStartLineCap="Round"
                             StrokeEndLineCap="Round" 
-                               Data="M 435.75097,408.42496 A 171.9214,171.9214 0 0 1 354.67376,215.5747 171.9214,171.9214 0 0 1 519.85749,87.203871 171.9214,171.9214 0 0 1 686.71611,213.38999 171.9214,171.9214 0 0 1 608.18358,407.29042"
-                            
+                            Data="{Binding DataBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                              
                             />
-                        <Path  x:Name="PART_value"
-                                VerticalAlignment="Top"
-                                Stretch="Fill"
-                                Stroke="Red"
-                                StrokeThickness="22"
-                                StrokeStartLineCap="Round"
-                                StrokeEndLineCap="Round" 
-                               />
-
-                        <Ellipse Fill="AntiqueWhite" Height="326" Width="326" Margin="0,22,0,0" Visibility="Collapsed"/>
-                        <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="10" StartAngle="230"  Margin="0,23,0,0" >
+                        <Path x:Name="PART_Value"
+                            Stretch="None"
+                            Stroke="Red"
+                            StrokeThickness="6"
+                            Margin="8"
+                            StrokeStartLineCap="Round"
+                            StrokeEndLineCap="Round" 
+                            Data="{Binding DataValue, RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+                        
+                        <controls:RadialPanel Margin="11"
+                                              Alignment="Center"  AngleItem="10" StartAngle="230"  >
                             <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
                             <Ellipse  />
@@ -107,7 +110,8 @@
                             <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource DarkDotBrush}" Width="3" Height="3"/>
                         </controls:RadialPanel>
-                        <controls:RadialPanel  Alignment="Center" Radius="174"  AngleItem="30" StartAngle="240"  Margin="0,23,0,0" >
+                        <controls:RadialPanel  Margin="11"
+                                               Alignment="Center" AngleItem="30" StartAngle="240">
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
@@ -120,7 +124,7 @@
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                             <Ellipse Fill="{StaticResource ForegroundBrush}" Width="3" Height="3"/>
                         </controls:RadialPanel>
-                        <TextBlock Text="{Binding WarningValue, RelativeSource={RelativeSource TemplatedParent}}" 
+                        <TextBlock Text="{Binding SmoothValue, RelativeSource={RelativeSource TemplatedParent}, StringFormat=0}" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center" 
                                    Style="{StaticResource TitleTextStyle}" 

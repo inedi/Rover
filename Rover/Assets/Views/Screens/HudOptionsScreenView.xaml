@@ -51,7 +51,7 @@
                     LargeChange="1"
                     SmallChange="0.1"
                     />
-            <TextBlock Text="Star Color"/>
+            <TextBlock Text="Figures Color"/>
             <ComboBox ItemsSource="{Binding StarColors}"
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"
@@ -70,7 +70,7 @@
                     LargeChange="1"
                     SmallChange="0.1"
                    />
-            <TextBlock Text="Star Color"/>
+            <TextBlock Text="Grid Color"/>
             <ComboBox ItemsSource="{Binding StarColors}"
                       ItemTemplate="{StaticResource ColorsDataTemplate}"
                       SelectedValuePath="Color"

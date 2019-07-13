@@ -75,7 +75,6 @@
     <Compile Include="Assets\NoesisGUI\Plugins\Editor\NoesisViewEditor.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\Editor\NoesisWelcome.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\Editor\NoesisXamlEditor.cs" />
-    <Compile Include="Assets\Tutorial_Info\Scripts\Editor\ReadmeEditor.cs" />
     <None Include="Assets\NoesisGUI\Plugins\Editor\version.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/inedi/Desktop/Git/Rover/Rover/Rover/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -641,7 +641,7 @@
     <Compile Include="Assets\Scripts\RoverEngine\Suspension.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\WheelVehicle.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Tutorial_Info\Scripts\Readme.cs" />
+    <Compile Include="Assets\Settings\InputSystem\GameInputActions.cs" />
     <Compile Include="Assets\ViewModels\HudOptionsScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs" />
