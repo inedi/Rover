@@ -95,6 +95,8 @@
     <Compile Include="Assets\Controls\Gauge.cs" />
     <Compile Include="Assets\Controls\RadialPanel.cs" />
     <Compile Include="Assets\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Assets\Converters\SpeedToBrushConverneter.cs" />
+    <Compile Include="Assets\Data\Entities\GaugeStatus.cs" />
     <Compile Include="Assets\Data\Entities\StarColor.cs" />
     <Compile Include="Assets\Data\Repositories\StarColorRepository.cs" />
     <Compile Include="Assets\Mvvm\ObservableObject.cs" />

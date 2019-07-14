@@ -6,12 +6,13 @@ using EventArgs = Noesis.EventArgs;
 #else
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Float = System.Double;
 #endif
 using System;
-
+using RoverGUI.Data.Entities;
 
 namespace RoverGUI.Controls
 {
@@ -21,7 +22,8 @@ namespace RoverGUI.Controls
         private const string BackgroundPathName = "Part_PathBackground";
         private const int AnimationSpeed = 700;
 
-        private double FullAngle;
+        private double ValueOffset;
+        private double ValuePercent;
 
         private Point centerPoint;
         private Point startPoint;
@@ -36,6 +38,8 @@ namespace RoverGUI.Controls
         private byte isLargeArc;
         private byte isLargeArcBackground;
 
+        private byte isPozitiveArc=1;
+
         private Path pathValue;
         private Path pathBackground;
         
@@ -45,16 +49,19 @@ namespace RoverGUI.Controls
 
         #region Properties
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnValueChanged));
-
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnValuePropertyChanged));
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
+        private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Gauge)d).OnValueChanged((double)e.NewValue);
+        }
 
 #if NOESIS
-        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(float), typeof(Gauge), new UIPropertyMetadata(0.0, OnSmoothValueChanged));
+        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(float), typeof(Gauge), new UIPropertyMetadata(0.0, OnSmoothValuePropertyChanged));
 
         public float SmoothValue
         {
@@ -62,72 +69,118 @@ namespace RoverGUI.Controls
             set { SetValue(SmoothValueProperty, value); }
         }
 #else
-        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnSmoothValueChanged));
-
+        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnSmoothValuePropertyChanged));
         public double SmoothValue
         {
             get { return (double)GetValue(SmoothValueProperty); }
             set { SetValue(SmoothValueProperty, value); }
         }
 #endif
+        private static void OnSmoothValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+#if NOESIS
+            ((Gauge)d).OnSmoothValueChanged((float)e.NewValue);
+#else
+            ((Gauge)d).OnSmoothValueChanged((double)e.NewValue);
+#endif
+        }
+
+        public static readonly DependencyProperty ValueForegroundProperty = DependencyProperty.Register("ValueForeground", typeof(Brush), typeof(Gauge), new UIPropertyMetadata(Brushes.White));
+        public Brush ValueForeground
+        {
+            get { return (Brush)GetValue(ValueForegroundProperty); }
+            set { SetValue(ValueForegroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty AngleValueProperty = DependencyProperty.Register("AngleValue", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0));
+        public double AngleValue
+        {
+            get { return (double)GetValue(AngleValueProperty); }
+            set { SetValue(AngleValueProperty, value); }
+        }
+
+
 
         public static readonly DependencyProperty DataValueProperty = DependencyProperty.Register("DataValue", typeof(string), typeof(Gauge), new UIPropertyMetadata(""));
-
         public string DataValue
         {
             get { return (string)GetValue(DataValueProperty); }
             set { SetValue(DataValueProperty, value); }
         }
 
-        public static readonly DependencyProperty DataBackgroundProperty = DependencyProperty.Register("DataBackground", typeof(string), typeof(Gauge), new UIPropertyMetadata(""));
 
+        public static readonly DependencyProperty DataBackgroundProperty = DependencyProperty.Register("DataBackground", typeof(string), typeof(Gauge), new UIPropertyMetadata(""));
         public string DataBackground
         {
             get { return (string)GetValue(DataBackgroundProperty); }
             set { SetValue(DataBackgroundProperty, value); }
         }
 
-        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double), typeof(Gauge), new UIPropertyMetadata(90.0, OnValueChanged));
 
+        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double), typeof(Gauge), new UIPropertyMetadata(100.0, OnMaximumPropertyChanged));
         public double Maximum
         {
-            get { return (double)GetValue(MaximumProperty); }
+            get {return (double)GetValue(MaximumProperty);}
             set { SetValue(MaximumProperty, value); }
         }
-
-        public static readonly DependencyProperty AngleOffsetProperty = DependencyProperty.Register("AngleOffset", typeof(double), typeof(Gauge), new UIPropertyMetadata(60.0, OnValueChanged));
-       
-        public double AngleOffset
+        private static void OnMaximumPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get
-            {
-                var angle = Math.PI / 180.0 * (double)GetValue(AngleOffsetProperty);
-                FullAngle = 2 * Math.PI - 2 * angle;
-
-                return angle;
-            }
-            set { SetValue(AngleOffsetProperty, value); }
+            ((Gauge)d).CalculatePozitions();
         }
 
-        public static readonly DependencyProperty AngleCoordinateRotationProperty = DependencyProperty.Register("AngleCoordinateRotation", typeof(double), typeof(Gauge), new UIPropertyMetadata(270.0, OnValueChanged));
+        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnMinimumPropertyChanged));
+        public double Minimum
+        {
+            get {return (double)GetValue(MinimumProperty);}
+            set { SetValue(MinimumProperty, value); }
+        }
+        private static void OnMinimumPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Gauge)d).CalculatePozitions();
+        }
 
+
+        public static readonly DependencyProperty AngleCoordinateRotationProperty = DependencyProperty.Register("AngleCoordinateRotation", typeof(double), typeof(Gauge), new UIPropertyMetadata(270.0, OnAngleCoordinateRotationPropertyChanged));
         public double AngleCoordinateRotation
         {
             get { return Math.PI / 180.0 * (double)GetValue(AngleCoordinateRotationProperty); }
             set { SetValue(AngleCoordinateRotationProperty, value); }
         }
+        private static void OnAngleCoordinateRotationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Gauge)d).CalculatePozitions();
+        }
 
-#endregion
+
+        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(double), typeof(Gauge), new UIPropertyMetadata(30.0, OnAnglePropertyChanged));
+        public double Angle
+        {
+            get { return Math.PI / 180.0 * (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+        private static void OnAnglePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Gauge)d).CalculatePozitions();
+        }
+
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(GaugeStatus), typeof(Gauge), new UIPropertyMetadata(GaugeStatus.Normal, OnAnglePropertyChanged));
+        public GaugeStatus Status
+        {
+            get { return (GaugeStatus)GetValue(StatusProperty); }
+            set { SetValue(StatusProperty, value); }
+        }
+
+        #endregion
 
 
-#region Instance methods
+        #region Instance methods
 
         public Gauge()
         {
-            //Initialized += OnInitialized;
+            //Initialized += OnInitialized; // инициализация вместо MeasureOverride ? OnApplyTemplate отсутсвует
             smoothValueAnimation = new DoubleAnimation
             {
-                //BeginTime = new TimeSpan(0, 0, 0, 0, 0),
+                //BeginTime = new TimeSpan(0, 0, 0, 0, 100), // задержка анимации при необходимости
                 Duration = TimeSpan.FromMilliseconds(AnimationSpeed),
                 FillBehavior = FillBehavior.HoldEnd,
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
@@ -141,35 +194,36 @@ namespace RoverGUI.Controls
 
         protected override Size MeasureOverride(Size constraint)
         {
-            if(pathValue == null)
+            if (pathValue == null)
             {
                 pathValue = GetTemplateChild(ValuePathName) as Path;
                 pathBackground = GetTemplateChild(BackgroundPathName) as Path;
             }
 
-            CalculateValueStartPozitions(constraint.Width - pathValue.Margin.Left - pathValue.Margin.Right);
-            CalculateBackgroundPozitions(constraint.Width - pathBackground.Margin.Left - pathBackground.Margin.Right);
-            SetDataBackground();
-            endPoint = CalculateEndpoint(Value);
-            SetDataValue();
+            CalculatePozitions();
+
             return constraint;
         }
 
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void CalculatePozitions()
         {
-            var gauge = (Gauge)d;
-            gauge.OnValueChanged((double)e.NewValue);
+            if (pathValue==null)
+                return;
+
+            if (Minimum < 0)
+            {
+                ValueOffset = Math.Abs(Minimum) * 100 / (Maximum - Minimum) / 100.0 * Angle;
+            }
+            else
+            {
+                ValueOffset = 0;
+            }
+
+            CalculateBackgroundStartPozitions(Width - pathBackground.Margin.Left - pathBackground.Margin.Right);
+            CalculateValueStartPozition(Width - pathValue.Margin.Left - pathValue.Margin.Right);
         }
 
-        private static void OnSmoothValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-#if NOESIS
-            ((Gauge)d).OnSmoothValueChanged((float)e.NewValue);
-#else
-            ((Gauge)d).OnSmoothValueChanged((double)e.NewValue);
-#endif
-
-        }
+       
 
         public void OnValueChanged(double value)
         {
@@ -177,6 +231,7 @@ namespace RoverGUI.Controls
                 return;
 
             if (value > Maximum) value = Maximum;
+            if (value < Minimum) value = Minimum;
 
             if (smoothValueAnimationStarted)
             {
@@ -191,7 +246,13 @@ namespace RoverGUI.Controls
 
         private void OnSmoothValueChanged(double value)
         {
-            endPoint = CalculateEndpoint(value * 100 / Maximum);
+            if (double.IsNaN(value))
+                return;
+
+            if (value > Maximum) value = Maximum;
+            if (value < Minimum) value = Minimum;
+
+            endPoint = CalculateEndpoint(value);
             SetDataValue();
         }
 
@@ -203,34 +264,21 @@ namespace RoverGUI.Controls
             }
         }
 
-        private void CalculateValueStartPozitions(double width)
-        {
-            centerPoint = new Point((float)width / 2.0f, (float)width / 2.0f);
-
-            radius = centerPoint.X - pathValue.StrokeThickness / 2.0;
-           
-            startPoint = new Point(
-                (float)Math.Cos((float)AngleCoordinateRotation - (float)AngleOffset) * (float)radius + centerPoint.X,
-                -(float)Math.Sin((float)AngleCoordinateRotation - (float)AngleOffset) * (float)radius + centerPoint.Y);
-        }
-
-        private void CalculateBackgroundPozitions(double width)
-        {
-            centerPointBackground = new Point((float)width / 2.0f, (float)width / 2.0f);
-
-            radiusBackground = centerPointBackground.X - pathBackground.StrokeThickness / 2.0;
-            startPointBackground = new Point(
-                (float)Math.Cos((float)AngleCoordinateRotation - (float)AngleOffset) * (float)radiusBackground + centerPointBackground.X,
-                -(float)Math.Sin((float)AngleCoordinateRotation - (float)AngleOffset) * (float)radiusBackground + centerPointBackground.Y);
-
-            endPointBackground = CalculateEndpointBackground(100.0);
-        }
-
         private Point CalculateEndpoint(double value)
         {
-            var angle = value / 100.0 * FullAngle;
-          
-            if (angle > Math.PI)
+            if(Minimum>0)
+            {
+                ValuePercent = (value - Minimum) * 100 / (Maximum - Minimum);
+            }
+            else
+            {
+                ValuePercent = (value) * 100 / (Maximum - Minimum);
+            }
+
+            var angle = ValuePercent / 100 * Angle;
+
+
+            if (Math.Abs(angle) > Math.PI)
             {
                 isLargeArc = 1;
             }
@@ -239,18 +287,51 @@ namespace RoverGUI.Controls
                 isLargeArc = 0;
             }
 
-            angle = AngleCoordinateRotation - AngleOffset - angle;
+            if(value >= 0)
+            {
+                isPozitiveArc = 1;
+            }
+            else
+            {
+                isPozitiveArc = 0;
+            }
+
+            angle = AngleCoordinateRotation - ValueOffset - angle;
+
+            AngleValue = angle / Math.PI * -180;
 
             return new Point(
                 (float)Math.Cos(angle) * (float)radius + centerPoint.X,
                 -(float)Math.Sin(angle) * (float)radius + centerPoint.Y);
         }
 
-        private Point CalculateEndpointBackground(double value)
+        private void CalculateValueStartPozition(double width)
         {
-            var angle = value / 100.0 * FullAngle;
+            centerPoint = new Point((float)width / 2.0f, (float)width / 2.0f);
 
-            if (angle > Math.PI)
+            radius = centerPoint.X - pathValue.StrokeThickness / 2.0;
+
+            startPoint = new Point(
+                (float)Math.Cos((float)(AngleCoordinateRotation - ValueOffset)) * (float)radius + centerPoint.X,
+                -(float)Math.Sin((float)(AngleCoordinateRotation - ValueOffset)) * (float)radius + centerPoint.Y);
+
+        }
+
+        private void CalculateBackgroundStartPozitions(double width)
+        {
+            centerPointBackground = new Point((float)width / 2.0f, (float)width / 2.0f);
+
+            radiusBackground = centerPointBackground.X - pathBackground.StrokeThickness / 2.0;
+
+            startPointBackground = new Point(
+                (float)Math.Cos((float)AngleCoordinateRotation) * (float)radiusBackground + centerPointBackground.X,
+                -(float)Math.Sin((float)AngleCoordinateRotation) * (float)radiusBackground + centerPointBackground.Y);
+
+            endPointBackground = new Point(
+               (float)Math.Cos(AngleCoordinateRotation - Angle) * (float)radiusBackground + centerPointBackground.X,
+               -(float)Math.Sin(AngleCoordinateRotation - Angle) * (float)radiusBackground + centerPointBackground.Y);
+
+            if (Angle > Math.PI)
             {
                 isLargeArcBackground = 1;
             }
@@ -259,11 +340,7 @@ namespace RoverGUI.Controls
                 isLargeArcBackground = 0;
             }
 
-            angle = AngleCoordinateRotation - AngleOffset - angle;
-
-            return new Point(
-                (float)Math.Cos(angle) * (float)radiusBackground + centerPointBackground.X,
-                -(float)Math.Sin(angle) * (float)radiusBackground + centerPointBackground.Y);
+            SetDataBackground();
         }
 
         private void SetDataValue()
@@ -278,7 +355,9 @@ namespace RoverGUI.Controls
                 + radius.ToString("0.0000", System.Globalization.CultureInfo.GetCultureInfo("en-US"))
                 + " 0 " 
                 + isLargeArc 
-                + " 1 " 
+                + " " 
+                + isPozitiveArc
+                + " "
                 + endPoint.X.ToString("0.0000", System.Globalization.CultureInfo.GetCultureInfo("en-US"))
                 + "," 
                 + endPoint.Y.ToString("0.0000", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
