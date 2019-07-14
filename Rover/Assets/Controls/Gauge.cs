@@ -163,7 +163,7 @@ namespace RoverGUI.Controls
             ((Gauge)d).CalculatePozitions();
         }
 
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(GaugeStatus), typeof(Gauge), new UIPropertyMetadata(GaugeStatus.Normal, OnAnglePropertyChanged));
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(GaugeStatus), typeof(Gauge), new UIPropertyMetadata(GaugeStatus.Normal));
         public GaugeStatus Status
         {
             get { return (GaugeStatus)GetValue(StatusProperty); }
@@ -173,7 +173,7 @@ namespace RoverGUI.Controls
         #endregion
 
 
-        #region Instance methods
+        #region Methods
 
         public Gauge()
         {

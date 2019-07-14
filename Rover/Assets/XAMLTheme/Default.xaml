@@ -18,8 +18,8 @@
     <SolidColorBrush x:Key="NormalSpeedBrush" Color="#FF13CD00"/>
     <SolidColorBrush x:Key="WarningRangeBrush" Color="#FFFF7C25"/>
     <SolidColorBrush x:Key="DangerRangeBrush" Color="#FFFF2626"/>
+    <SolidColorBrush x:Key="RecuperateRangeBrush" Color="#FF26B0FF"/>
 
-    
     <!--
     ///////////////////////////////////////////////
     Geometrys
@@ -32,11 +32,11 @@
         <Setter Property="Width" Value="4"/>
         <Setter Property="Height" Value="4"/>
     </Style>
-    
+
     <Style x:Key="NormalTickStyle" TargetType="Ellipse">
         <Setter Property="Fill" Value="{StaticResource ForegroundBrush}"/>
-        <Setter Property="Width" Value="3"/>
-        <Setter Property="Height" Value="3"/>
+        <Setter Property="Width" Value="4"/>
+        <Setter Property="Height" Value="4"/>
     </Style>
 
     <Style x:Key="WarningTickStyle" TargetType="Ellipse">
@@ -51,31 +51,29 @@
         <Setter Property="Height" Value="4"/>
     </Style>
 
+
+
     <!--
     ///////////////////////////////////////////////
     Converters
     ///////////////////////////////////////////////
     -->
-    <!--<converters:SpeedToBrushConverneter
-        x:Key="SpeedToBrushConverneter"
-        NormalBrush="{StaticResource NormalRangeBrush}"
-        WarningBrush="{StaticResource WarningRangeBrush}"
-        FailureBrush="{StaticResource FailureRangeBrush}"
-        ForegroundBrush="{StaticResource ForegroundBrush}"
-        />-->
+    <converters:SpeedToStatusConverneter x:Key="SpeedToStatusConverneter" />
+    <converters:PowerToStatusConverter x:Key="PowerToStatusConverter" />
+
+
 
     <!--
     ///////////////////////////////////////////////
     Texts
     ///////////////////////////////////////////////
     -->
-    
     <FontFamily x:Key="FontFamily">/WPF;component/Assets/Fonts/#ISOCPEUR</FontFamily>
     <!-- Font ISOCPEUR
          Copyright 1997,1998 Autodesk Inc.
          Free for Personal Use
     -->
-    
+
     <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
         <Setter Property="FontSize" Value="14"/>
@@ -92,7 +90,9 @@
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="LineStackingStrategy" Value="MaxHeight"/>
     </Style>
-    
+
+
+
 
     <!--
     ///////////////////////////////////////////////
@@ -105,24 +105,35 @@
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="ValueForeground" Value="Yellow"/>
+        <Setter Property="Status" Value="{Binding SmoothValue, RelativeSource={RelativeSource Self}, Converter={StaticResource SpeedToStatusConverneter}}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Gauge">
-                    <Grid IsHitTestVisible="False">
+                    <Grid IsHitTestVisible="False" >
                         <!--Поверка радиусов-->
                         <!--<Ellipse Fill="Olive"/>-->
+                        <!--<Ellipse>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FF3E0000" Offset="0"/>
+                                    <GradientStop Color="#00000000" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>-->
                         <Path x:Name="Part_PathBackground"
                             Stretch="None"
                             Stroke="{StaticResource HudBackgroundBrush}"
-                            StrokeThickness="22"
+                            StrokeThickness="26"
                             StrokeStartLineCap="Round"
                             StrokeEndLineCap="Round" 
                             Data="{Binding DataBackground, RelativeSource={RelativeSource TemplatedParent}}"
                             />
 
                         <controls:RadialPanel x:Name="Part_Ticks" 
-                                              Margin="11"
-                                              Alignment="Center"  AngleItem="10" StartAngle="240"  >
+                                              Margin="13"
+                                              Alignment="Center"  
+                                              AngleItem="10" 
+                                              StartAngle="240"  >
                             <Ellipse Style="{StaticResource NormalTickStyle}"/>
                             <Ellipse Style="{StaticResource BaseTickStyle}"/>
                             <Ellipse Style="{StaticResource BaseTickStyle}"/>
@@ -160,14 +171,14 @@
                             Stretch="None"
                             Stroke="{TemplateBinding ValueForeground}"
                             StrokeThickness="6"
-                            Margin="8"
+                            Margin="10"
                             StrokeStartLineCap="Round"
                             StrokeEndLineCap="Round" 
                             Data="{Binding DataValue, RelativeSource={RelativeSource TemplatedParent}}"
                             />
 
                         <Border x:Name="Part_Arrow" 
-                                Margin="22" 
+                                Margin="26" 
                                 RenderTransformOrigin="0.5,0.5" >
                             <Border.RenderTransform>
                                 <RotateTransform Angle="{Binding AngleValue, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -181,14 +192,151 @@
                                 />
                         </Border>
 
-                      
                         <TextBlock x:Name="Part_Text" 
                                    Text="{Binding SmoothValue, RelativeSource={RelativeSource TemplatedParent}, StringFormat=0}" 
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center" 
                                    Style="{StaticResource TitleTextStyle}" 
-                                   FontSize="50"/> 
+                                   FontSize="50"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Status" Value="Off">
+                            <Setter TargetName="Part_Arrow" 
+                                    Property="Visibility"
+                                    Value="Collapsed"
+                                    />
+                            <Setter TargetName="Part_Text" 
+                                    Property="Visibility"
+                                    Value="Collapsed"
+                                    />
+                            <Setter TargetName="Part_Ticks" 
+                                    Property="Visibility"
+                                    Value="Collapsed"
+                                    />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--Noesis Not support -->
+        <!--<Style.Resources>
+            <Storyboard x:Key="ToNormalStoryboard" FillBehavior="HoldEnd">
+                <ColorAnimation To="#FF13CD00" 
+                                    Storyboard.TargetProperty="(ValueForeground).(SolidColorBrush.Color)" 
+                                    Duration="0:0:1"
+                                 FillBehavior="HoldEnd"
+                                 IsAdditive="True" />
+            </Storyboard>
+            <Storyboard x:Key="ToWarningStoryboard" FillBehavior="HoldEnd">
+                <ColorAnimation To="#FFFF7C25" 
+                                    Storyboard.TargetProperty="(ValueForeground).(SolidColorBrush.Color)" 
+                                    Duration="0:0:1"
+                                 FillBehavior="HoldEnd"
+                                 IsAdditive="True"/>
+            </Storyboard>
+            <Storyboard x:Key="ToDangerStoryboard" FillBehavior="HoldEnd">
+                <ColorAnimation To="#FFFF2626" 
+                                    Storyboard.TargetProperty="(ValueForeground).(SolidColorBrush.Color)" 
+                                    Duration="0:0:1"
+                                FillBehavior="HoldEnd"
+                                 IsAdditive="True"/>
+            </Storyboard>
+        </Style.Resources>-->
+        <Style.Triggers>
+            <Trigger Property="Status" Value="Normal">
+                <Setter Property="ValueForeground" Value="{StaticResource NormalSpeedBrush}"/>
+            </Trigger>
+            <Trigger Property="Status" Value="Warning">
+                <Setter Property="ValueForeground" Value="{StaticResource WarningRangeBrush}"/>
+            </Trigger>
+            <Trigger Property="Status" Value="Danger">
+                <Setter Property="ValueForeground" Value="{StaticResource DangerRangeBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PowerGaugeStyle" TargetType="controls:Gauge">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ValueForeground" Value="Yellow"/>
+        <Setter Property="Status" Value="{Binding SmoothValue, RelativeSource={RelativeSource Self}, Converter={StaticResource PowerToStatusConverter}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Gauge">
+                    <Grid IsHitTestVisible="False">
+                        <!--Поверка радиусов-->
+                        <!--<Ellipse Fill="Olive"/>-->
+                        <!--<Ellipse>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FF3E0000" Offset="0"/>
+                                    <GradientStop Color="#00000000" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>-->
+                        <Path x:Name="Part_PathBackground"
+                            Stretch="None"
+                            Stroke="{StaticResource HudBackgroundBrush}"
+                            StrokeThickness="20"
+                            StrokeStartLineCap="Round"
+                            StrokeEndLineCap="Round" 
+                            Data="{Binding DataBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+
+                        <controls:RadialPanel x:Name="Part_Ticks" 
+                                              Margin="10"
+                                              Alignment="Center"  
+                                              AngleItem="15" 
+                                              StartAngle="225"  >
+                            <Ellipse Style="{StaticResource NormalTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}"/>
+                            <Ellipse Style="{StaticResource WarningTickStyle}"/>
+                            <Ellipse Style="{StaticResource DangerTickStyle}"/>
+                        </controls:RadialPanel>
+
+                        <Path x:Name="PART_Value"
+                            Stretch="None"
+                            Stroke="{TemplateBinding ValueForeground}"
+                            StrokeThickness="6"
+                            Margin="7"
+                            StrokeStartLineCap="Round"
+                            StrokeEndLineCap="Round" 
+                            Data="{Binding DataValue, RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+
+                        <Border x:Name="Part_Arrow" 
+                                Margin="20" 
+                                RenderTransformOrigin="0.5,0.5" >
+                            <Border.RenderTransform>
+                                <RotateTransform Angle="{Binding AngleValue, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Border.RenderTransform>
+                            <Path
+                                Width="20"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Stretch="Uniform"
+                                Fill="{TemplateBinding Foreground}"
+                                Data="{StaticResource GaugeArrowGeometry}"
+                                />
+                        </Border>
+
+                        <TextBlock x:Name="Part_Text" 
+                                   Text="{Binding SmoothValue, RelativeSource={RelativeSource TemplatedParent}, StringFormat=0}" 
+                                   Foreground="{TemplateBinding Foreground}"
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center" 
+                                   Style="{StaticResource TitleTextStyle}" 
+                                   FontSize="50"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Status" Value="Off">
@@ -218,6 +366,67 @@
             </Trigger>
             <Trigger Property="Status" Value="Danger">
                 <Setter Property="ValueForeground" Value="{StaticResource DangerRangeBrush}"/>
+            </Trigger>
+            <Trigger Property="Status" Value="Recuperate">
+                <Setter Property="ValueForeground" Value="{StaticResource RecuperateRangeBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="EnergyProgressBarStyle" TargetType="controls:RoverProgressBar">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Foreground" Value="Yellow"/>
+        <Setter Property="Background" Value="{StaticResource HudBackgroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:RoverProgressBar">
+                    <Grid>
+                        <Rectangle  
+                                   Fill="{TemplateBinding Background}"
+                                   Height="20"
+                                   RadiusX="10" RadiusY="10"/>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Margin="8,0">
+                            <Ellipse Style="{StaticResource DangerTickStyle}"/>
+                            <Ellipse Style="{StaticResource WarningTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource WarningTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                            <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                        </StackPanel>
+
+                        <Rectangle x:Name="PART_Track" 
+                                   Margin="7,0" />
+                        <Rectangle x:Name="PART_Indicator" MinWidth="6"
+                                   Fill="{TemplateBinding Foreground}" 
+                                   HorizontalAlignment="Left"
+                                   Height="6"
+                                   VerticalAlignment="Center"
+                                   RadiusX="3"
+                                   RadiusY="3"
+                                   Margin="7,0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Status" Value="Normal">
+                <Setter Property="Foreground" Value="{StaticResource NormalSpeedBrush}"/>
+            </Trigger>
+            <Trigger Property="Status" Value="Warning">
+                <Setter Property="Foreground" Value="{StaticResource WarningRangeBrush}"/>
+            </Trigger>
+            <Trigger Property="Status" Value="Danger">
+                <Setter Property="Foreground" Value="{StaticResource DangerRangeBrush}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

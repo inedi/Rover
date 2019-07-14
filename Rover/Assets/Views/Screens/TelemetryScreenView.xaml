@@ -5,36 +5,88 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:RoverGUI.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="800">
+             d:DesignHeight="1000" d:DesignWidth="990">
     <Grid >
+       
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        
         <!--Dashboard panel-->
-        <StackPanel>
-           
-            <controls:Gauge Margin="50" Width="300" Height="300" 
-                            Value="{Binding Value, ElementName=testslider}"
-                            VerticalAlignment="Center" 
-                            HorizontalAlignment="Center"
-                            Style="{StaticResource SpeedGaugeStyle}"
-                            Angle="300"
-                            AngleCoordinateRotation="240"
-                            Minimum="0"
-                            Maximum="50"
-                            Status="Normal"
-                            >
+        <Viewbox Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid Width="920" Margin="34,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock Text="Energy"
+                            Style="{StaticResource TitleTextStyle}"/>
+
+                    <controls:RoverProgressBar 
+                        Margin="0,30,0,0"
+                        Width="250" 
+                        Minimum="-100"
+                        Maximum="100"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Value="{Binding Value, ElementName=testslider}" 
+                        Style="{StaticResource EnergyProgressBarStyle}"
+                        
+                        />
+                    <controls:Gauge 
+                                Margin="0,170,-45,0"
+                                Width="250" 
+                                Height="250" 
+                                Value="{Binding Value, ElementName=testslider}"
+                                HorizontalAlignment="Right"
+                                Style="{StaticResource PowerGaugeStyle}"
+                                Angle="165"
+                                AngleCoordinateRotation="225"
+                                Minimum="-85"
+                                Maximum="225"
+                            
+                                />
+                </Grid>
+                <Grid Grid.Column="1"
+                           >
+                    <TextBlock Text="Speed"
+                            Style="{StaticResource TitleTextStyle}"/>
+
+                    <TextBlock Text="Auto Pilot"
+                           Margin="0 50 0 0"
+                            Style="{StaticResource TitleTextStyle}" FontSize="14"/>
+                
+                    <controls:Gauge 
+                                Margin="0,90,0,0"
+                                Width="370"
+                                Height="370" 
+                                Value="{Binding Value, ElementName=testslider}"
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource SpeedGaugeStyle}"
+                                Angle="300"
+                                AngleCoordinateRotation="240"
+                                Minimum="0"
+                                Maximum="50"
+                            
+                                />
+                
+                    <!--Status {Binding Status}-->
+                </Grid>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Жизнеобеспечение"
+                            Style="{StaticResource TitleTextStyle}"/>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+        
                
-            </controls:Gauge>
-            <Slider x:Name="testslider"
-                    Value="20"
-                    Minimum="-200"
-                    Maximum="200"
-                    LargeChange="10" SmallChange="5"/>
-        </StackPanel>
 
         <!--Navigate panel-->
         <Grid Grid.Row="1">
@@ -48,14 +100,22 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Rectangle x:Name="radarCameraRect"
+
+            <Slider x:Name="testslider"
+                    Grid.ColumnSpan="3"
+                    Value="0"
+                    Minimum="-100"
+                    Maximum="300"
+                    LargeChange="10" SmallChange="5"/>
+
+            <Rectangle x:Name="radarCameraRect" Grid.Row="1"
                        Grid.ColumnSpan="3" Grid.RowSpan="3" 
-                       StrokeThickness="10" Margin="30"  Fill="Black"/>
+                       StrokeThickness="10" Margin="30"  Fill="Black" />
         </Grid>
 
         <!--Clock panel-->
         <StackPanel 
-            Grid.Row="2" 
+            Grid.Row="3" 
             Orientation="Horizontal"
             HorizontalAlignment="Center"
             >

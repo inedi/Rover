@@ -13,6 +13,7 @@ namespace RoverGUI.Data.Entities
         Warning,
         Danger,
         Error,
+        Recuperate
 
     }
 }
