@@ -156,7 +156,6 @@
                             <Ellipse Style="{StaticResource DangerTickStyle}"/>
                         </controls:RadialPanel>
 
-
                         <Path x:Name="PART_Value"
                             Stretch="None"
                             Stroke="{TemplateBinding ValueForeground}"
