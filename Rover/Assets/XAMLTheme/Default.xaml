@@ -383,7 +383,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:RoverProgressBar">
-                    <Grid>
+                    <Grid IsHitTestVisible="False">
                         <Rectangle  
                                    Fill="{TemplateBinding Background}"
                                    Height="20"
@@ -406,10 +406,11 @@
 
                         <Rectangle x:Name="PART_Track" 
                                    Margin="7,0" />
-                        <Rectangle x:Name="PART_Indicator" MinWidth="6"
+                        <Rectangle x:Name="PART_Indicator" 
                                    Fill="{TemplateBinding Foreground}" 
-                                   HorizontalAlignment="Left"
+                                   MinWidth="6"
                                    Height="6"
+                                   HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    RadiusX="3"
                                    RadiusY="3"
@@ -429,6 +430,206 @@
                 <Setter Property="Foreground" Value="{StaticResource DangerRangeBrush}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CompassStyle" TargetType="controls:Compass">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Compass">
+                    <Grid>
+                        <Border Width="3416" HorizontalAlignment="Center">
+                            <Grid RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform X="{Binding Angle, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1708"/>
+                                    <ColumnDefinition Width="1708"/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Margin="-42,0,42,0">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{Binding ElementName=Part_Right}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <StackPanel x:Name="Part_Right" 
+                                            Grid.Column="1"
+                                            Background="Transparent"  
+                                            Orientation="Vertical" 
+                                            Margin="-26,0,26,0" 
+                                            HorizontalAlignment="Left">
+                                    <TextBlock >
+                                        <Run Text="      "/>
+                                        <Run Text="0"/>
+                                        <Run Text="                 "/>
+                                        <Run Text="15"/>
+                                        <Run Text="                "/>
+                                        <Run Text="30"/>
+                                        <Run Text="                "/>
+                                        <Run Text="45"/>
+                                        <Run Text="                "/>
+                                        <Run Text="60"/>
+                                        <Run Text="                "/>
+                                        <Run Text="75"/>
+                                        <Run Text="                "/>
+                                        <Run Text="90"/>
+                                        <Run Text="               "/>
+                                        <Run Text="105"/>
+                                        <Run Text="              "/>
+                                        <Run Text="120"/>
+                                        <Run Text="              "/>
+                                        <Run Text="135"/>
+                                        <Run Text="              "/>
+                                        <Run Text="150"/>
+                                        <Run Text="              "/>
+                                        <Run Text="165"/>
+                                        <Run Text="              "/>
+                                        <Run Text="180"/>
+                                        <Run Text="              "/>
+                                        <Run Text="195"/>
+                                        <Run Text="              "/>
+                                        <Run Text="210"/>
+                                        <Run Text="              "/>
+                                        <Run Text="225"/>
+                                        <Run Text="              "/>
+                                        <Run Text="240"/>
+                                        <Run Text="              "/>
+                                        <Run Text="255"/>
+                                        <Run Text="              "/>
+                                        <Run Text="270"/>
+                                        <Run Text="              "/>
+                                        <Run Text="285"/>
+                                        <Run Text="              "/>
+                                        <Run Text="300"/>
+                                        <Run Text="              "/>
+                                        <Run Text="315"/>
+                                        <Run Text="              "/>
+                                        <Run Text="330"/>
+                                        <Run Text="              "/>
+                                        <Run Text="345"/>
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                Margin="0,5">
+                                        <Ellipse Style="{StaticResource BaseTickStyle}"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--0-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--15-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--30-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--45-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--60-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--75-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--90-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--105-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--120-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--135-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--150-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--165-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--180-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--195-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--210-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--225-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--240-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--255-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--270-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--285-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--300-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--315-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--330-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
+                                        <!--345-->
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <Rectangle 
+                                   Fill="{StaticResource ForegroundBrush}" 
+                                   Width="4"
+                                   Height="27"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Center"
+                                   RadiusX="3"
+                                   RadiusY="3"
+                                   Margin="0,39,0,0"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

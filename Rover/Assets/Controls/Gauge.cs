@@ -47,7 +47,7 @@ namespace RoverGUI.Controls
         private readonly Storyboard smoothValueStoryboard = new Storyboard();
         private bool smoothValueAnimationStarted;
 
-        #region Properties
+#region Properties
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(Gauge), new UIPropertyMetadata(0.0, OnValuePropertyChanged));
         public double Value
@@ -170,10 +170,10 @@ namespace RoverGUI.Controls
             set { SetValue(StatusProperty, value); }
         }
 
-        #endregion
+#endregion
 
 
-        #region Methods
+#region Methods
 
         public Gauge()
         {
@@ -202,6 +202,8 @@ namespace RoverGUI.Controls
 
             CalculatePozitions();
 
+            AngleValue = (AngleCoordinateRotation - ValueOffset) / Math.PI * -180;
+
             return constraint;
         }
 
@@ -222,8 +224,6 @@ namespace RoverGUI.Controls
             CalculateBackgroundStartPozitions(Width - pathBackground.Margin.Left - pathBackground.Margin.Right);
             CalculateValueStartPozition(Width - pathValue.Margin.Left - pathValue.Margin.Right);
         }
-
-       
 
         public void OnValueChanged(double value)
         {

@@ -92,6 +92,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assets\Controls\Compass.cs" />
     <Compile Include="Assets\Controls\Gauge.cs" />
     <Compile Include="Assets\Controls\RadialPanel.cs" />
     <Compile Include="Assets\Controls\RoverProgressBar.cs" />
