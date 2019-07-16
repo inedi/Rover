@@ -642,6 +642,7 @@
     <Compile Include="Assets\Scripts\FPSCounter.cs" />
     <Compile Include="Assets\Scripts\RenderCameraToTelemetryScreenXaml.cs" />
     <Compile Include="Assets\Scripts\RotateSkybox.cs" />
+    <Compile Include="Assets\Scripts\RotateToAzimuth.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\EngineSoundManager.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\Suspension.cs" />
     <Compile Include="Assets\Scripts\RoverEngine\WheelVehicle.cs" />

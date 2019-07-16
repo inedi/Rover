@@ -18,8 +18,35 @@ namespace RoverGUI.Controls
 {
     public class Compass : Control
     {
-#region Properties
+#if NOESIS
+        private const float Degree = 4.8f;
+        private float offset;
+#else
+        private const double Degree = 4.8;
+        private double offset;
+#endif
 
+        #region Properties
+#if NOESIS
+        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(float), typeof(Compass), new UIPropertyMetadata(0.0, OnAnglePropertyChanged));
+        public float Angle
+        {
+            get { return (float)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+        private static void OnAnglePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Compass)d).AngleChanged((float)e.NewValue);
+        }
+
+        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(float), typeof(Compass), new UIPropertyMetadata(0.0));
+
+        public float SmoothValue
+        {
+            get { return (float)GetValue(SmoothValueProperty); }
+            set { SetValue(SmoothValueProperty, value); }
+        }
+#else
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("Angle", typeof(double), typeof(Compass), new UIPropertyMetadata(0.0, OnAnglePropertyChanged));
         public double Angle
         {
@@ -28,19 +55,45 @@ namespace RoverGUI.Controls
         }
         private static void OnAnglePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Compass)d).CalculatePozitions();
+            ((Compass)d).AngleChanged((double)e.NewValue);
         }
 
-        private void CalculatePozitions()
+        public static readonly DependencyProperty SmoothValueProperty = DependencyProperty.Register("SmoothValue", typeof(double), typeof(Compass), new UIPropertyMetadata(0.0));
+        public double SmoothValue
         {
-           // throw new NotImplementedException();
+            get { return (double)GetValue(SmoothValueProperty); }
+            set { SetValue(SmoothValueProperty, value); }
         }
+#endif
 
         #endregion
 
+
         public Compass()
         {
-
+            SmoothValue = -5 * Degree - 2; // 5 - смещение на дополнительные 5 град нарисованные чтобы текст "0" рисовался ок -2 - половина ширины указателя
         }
+
+#if NOESIS
+        private void AngleChanged(float value)
+        {
+            if (float.IsNaN(value))
+                return;
+
+            offset = (value % 360) * Degree - 5 * Degree - 2;// 5 - смещение на дополнительные 5 град нарисованныеслева от 0 чтобы текст "0" рисовался ок -2 - половина ширины указателя
+
+            SmoothValue = offset;
+        }
+#else
+        private void AngleChanged(double value)
+        {
+            if (double.IsNaN(value))
+                return;
+
+            offset = (value % 360) * Degree - 5 * Degree - 2;// 5 - смещение на дополнительные 5 град нарисованныеслева от 0 чтобы текст "0" рисовался ок -2 - половина ширины указателя
+
+            SmoothValue = offset;
+        }
+#endif
     }
 }

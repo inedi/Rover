@@ -10,19 +10,27 @@ namespace RoverGUI.ViewModels
             set { SetValue(value); }
         }
 
+        
+
         public int Speed
         {
             get { return GetValue<int>(); }
             set { SetValue(value); }
         }
 
-//        public int Speed { get; set; }
+        public int Azimuth
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
 
 
         public TelemetryScreenViewModel()
         {
-            IsHandBrake = false;
-            Speed = 20;
+            //IsHandBrake = false;
+            //Speed = 20;
+            //Azimuth = 50;
         }
 
     }

@@ -68,7 +68,7 @@
     Texts
     ///////////////////////////////////////////////
     -->
-    <FontFamily x:Key="FontFamily">/WPF;component/Assets/Fonts/#ISOCPEUR</FontFamily>
+    <FontFamily x:Key="FontFamily">/RoverGUI;component/Assets/Fonts/#ISOCPEUR</FontFamily>
     <!-- Font ISOCPEUR
          Copyright 1997,1998 Autodesk Inc.
          Free for Personal Use
@@ -82,13 +82,18 @@
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="LineHeight" Value="20"/>
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
     </Style>
 
     <Style x:Key="TitleTextStyle" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="LineStackingStrategy" Value="MaxHeight"/>
+    </Style>
+
+    <Style x:Key="CompasTextStyle" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextTrimming" Value="None"/>
     </Style>
 
 
@@ -441,76 +446,92 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Compass">
                     <Grid>
-                        <Border Width="3416" HorizontalAlignment="Center">
+                        <Border Width="6912" HorizontalAlignment="Center">
                             <Grid RenderTransformOrigin="0.5,0.5">
                                 <Grid.RenderTransform>
                                     <TransformGroup>
-                                        <TranslateTransform X="{Binding Angle, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        <TranslateTransform X="{Binding SmoothValue, RelativeSource={RelativeSource TemplatedParent}}"/>
                                     </TransformGroup>
                                 </Grid.RenderTransform>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1708"/>
-                                    <ColumnDefinition Width="1708"/>
+                                    <ColumnDefinition Width="1728"/>
+                                    <ColumnDefinition Width="1728"/>
+                                    <ColumnDefinition Width="1728"/>
+                                    <ColumnDefinition Width="1728"/>
                                 </Grid.ColumnDefinitions>
-                                <Rectangle Margin="-42,0,42,0">
+                                <Rectangle Grid.Column="1"
+                                           Margin="0,0,0,0">
                                     <Rectangle.Fill>
-                                        <VisualBrush Visual="{Binding ElementName=Part_Right}"/>
+                                        <VisualBrush Visual="{Binding ElementName=Part_Right}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle Grid.Column="2"
+                                           Margin="0,0,0,0">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{Binding ElementName=Part_Right}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Rectangle Grid.Column="3"
+                                           Margin="0,0,0,0">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{Binding ElementName=Part_Right}" />
                                     </Rectangle.Fill>
                                 </Rectangle>
                                 <StackPanel x:Name="Part_Right" 
-                                            Grid.Column="1"
+                                            Grid.Column="0"
                                             Background="Transparent"  
                                             Orientation="Vertical" 
-                                            Margin="-26,0,26,0" 
+                                            Margin="0,0,0,0" 
                                             HorizontalAlignment="Left">
-                                    <TextBlock >
-                                        <Run Text="      "/>
+                                    <TextBlock Style="{StaticResource CompasTextStyle}" 
+                                               Margin="1,0,0,1">
+                                        <Run Text="  "/>
                                         <Run Text="0"/>
-                                        <Run Text="                 "/>
+                                        <Run Text="       "/>
                                         <Run Text="15"/>
-                                        <Run Text="                "/>
+                                        <Run Text="      "/>
                                         <Run Text="30"/>
-                                        <Run Text="                "/>
+                                        <Run Text="      "/>
                                         <Run Text="45"/>
-                                        <Run Text="                "/>
+                                        <Run Text="      "/>
                                         <Run Text="60"/>
-                                        <Run Text="                "/>
+                                        <Run Text="     "/>
                                         <Run Text="75"/>
-                                        <Run Text="                "/>
+                                        <Run Text="      "/>
                                         <Run Text="90"/>
-                                        <Run Text="               "/>
+                                        <Run Text="      "/>
                                         <Run Text="105"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="120"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="135"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="150"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="165"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="180"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="195"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="210"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="225"/>
-                                        <Run Text="              "/>
+                                        <Run Text="    "/>
                                         <Run Text="240"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="255"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="270"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="285"/>
-                                        <Run Text="              "/>
+                                        <Run Text="    "/>
                                         <Run Text="300"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="315"/>
-                                        <Run Text="              "/>
+                                        <Run Text="     "/>
                                         <Run Text="330"/>
-                                        <Run Text="              "/>
+                                        <Run Text="    "/>
                                         <Run Text="345"/>
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal"
@@ -612,7 +633,7 @@
                                         <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
                                         <Ellipse Style="{StaticResource NormalTickStyle}" Margin="20,0,0,0"/>
                                         <!--345-->
-                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,0,0"/>
+                                        <Ellipse Style="{StaticResource BaseTickStyle}" Margin="20,0,20,0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -620,12 +641,12 @@
                         <Rectangle 
                                    Fill="{StaticResource ForegroundBrush}" 
                                    Width="4"
-                                   Height="27"
+                                   Height="20"
                                    VerticalAlignment="Top"
                                    HorizontalAlignment="Center"
                                    RadiusX="3"
                                    RadiusY="3"
-                                   Margin="0,39,0,0"/>
+                                   Margin="0,40,0,0"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

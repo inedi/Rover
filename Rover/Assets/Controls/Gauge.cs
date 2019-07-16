@@ -22,7 +22,7 @@ namespace RoverGUI.Controls
         private const string BackgroundPathName = "Part_PathBackground";
         private const int AnimationSpeed = 700;
 
-        private double ValueOffset;
+        private double ValueOffset=0;
         private double ValuePercent;
 
         private Point centerPoint;
@@ -192,6 +192,14 @@ namespace RoverGUI.Controls
             Storyboard.SetTargetProperty(smoothValueAnimation, new PropertyPath(SmoothValueProperty));
         }
 
+        private void OnSmoothValueAnimationCompleted(object sender, EventArgs e)
+        {
+            if (smoothValueAnimationStarted)
+            {
+                smoothValueAnimationStarted = false;
+            }
+        }
+
         protected override Size MeasureOverride(Size constraint)
         {
             if (pathValue == null)
@@ -256,13 +264,7 @@ namespace RoverGUI.Controls
             SetDataValue();
         }
 
-        private void OnSmoothValueAnimationCompleted(object sender, EventArgs e)
-        {
-            if (smoothValueAnimationStarted)
-            {
-                smoothValueAnimationStarted = false;
-            }
-        }
+       
 
         private Point CalculateEndpoint(double value)
         {

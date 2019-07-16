@@ -103,14 +103,15 @@
                
 
                 <controls:Compass Grid.Row="1"
-                                  Width="550"
+                                  Width="380"
                                   VerticalAlignment="Center"
+                                  Margin="0,20,0,20"
                                   Style="{StaticResource CompassStyle}"
-                                  Angle="{Binding Value, ElementName=testslider2}"
+                                  Angle="{Binding Azimuth}"
                                   />
                
 
-                <Rectangle x:Name="radarCameraRect" Grid.Row="3"
+                <Rectangle x:Name="radarCameraRect" Grid.Row="2"
                        
                            StrokeThickness="10" Margin="30"  Fill="Black" />
 
@@ -122,7 +123,7 @@
                             Maximum="300"
                             LargeChange="10" SmallChange="1"/>
                     <Slider x:Name="testslider2"
-                            Value="0"
+                            Value="-0"
                             Minimum="-4000"
                             Maximum="4000"
                             LargeChange="15" SmallChange="5"/>
