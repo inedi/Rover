@@ -8,7 +8,7 @@
              d:DesignHeight="1000" d:DesignWidth="990">
     
     <Viewbox Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <Grid Width="920" Margin="34,24">
+        <Grid Width="892" Height="1032" Margin="34,24">
 
             <Grid.RowDefinitions>
                 <RowDefinition  Height="Auto"/>
@@ -88,47 +88,28 @@
             </Grid>
 
 
+            <controls:Compass Grid.Row="1"
+                                Width="380"
+                                VerticalAlignment="Center"
+                                Margin="0,0,0,0"
+                                Style="{StaticResource CompassStyle}"
+                                Angle="{Binding Azimuth}"
+                                />
+            <Rectangle 
+                       Grid.Row="2"
+                       Margin="30"
+                       Stretch="UniformToFill"
+                       Fill="Black" 
+                       />
 
+            <Rectangle x:Name="radarCameraRect" 
+                       Grid.Row="2"
+                       Margin="30"
+                       Stretch="UniformToFill"
+                       Fill="Black" 
+                       />
+          
 
-            <!--Navigate panel-->
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-               
-
-                <controls:Compass Grid.Row="1"
-                                  Width="380"
-                                  VerticalAlignment="Center"
-                                  Margin="0,20,0,20"
-                                  Style="{StaticResource CompassStyle}"
-                                  Angle="{Binding Azimuth}"
-                                  />
-               
-
-                <Rectangle x:Name="radarCameraRect" Grid.Row="2"
-                       
-                           StrokeThickness="10" Margin="30"  Fill="Black" />
-
-                <StackPanel Grid.Row="3" Margin="20"
-                    HorizontalAlignment="Left" Width="500">
-                    <Slider x:Name="testslider"
-                            Value="0"
-                            Minimum="-100"
-                            Maximum="300"
-                            LargeChange="10" SmallChange="1"/>
-                    <Slider x:Name="testslider2"
-                            Value="-0"
-                            Minimum="-4000"
-                            Maximum="4000"
-                            LargeChange="15" SmallChange="5"/>
-                </StackPanel>
-            </Grid>
 
             <!--Clock panel-->
             <StackPanel 
@@ -147,6 +128,19 @@
                 <TextBlock  Text="10 февр. 2037" 
                            Style="{StaticResource TitleTextStyle}"/>
 
+            </StackPanel>
+            <StackPanel Grid.Row="3" Margin="20"
+                    HorizontalAlignment="Left" Width="500">
+                <Slider x:Name="testslider"
+                            Value="0"
+                            Minimum="-100"
+                            Maximum="300"
+                            LargeChange="10" SmallChange="1"/>
+                <Slider x:Name="testslider2"
+                            Value="-0"
+                            Minimum="-4000"
+                            Maximum="4000"
+                            LargeChange="15" SmallChange="5"/>
             </StackPanel>
         </Grid>
     </Viewbox>

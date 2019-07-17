@@ -632,6 +632,11 @@
     <Compile Include="Assets\NoesisGUI\Plugins\NoesisView.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\NoesisXaml.cs" />
     <Compile Include="Assets\NoesisGUI\Plugins\XamlDependencies.cs" />
+    <Compile Include="Assets\Scripts\AirSim\AirSimSettings.cs" />
+    <Compile Include="Assets\Scripts\AirSim\AirSimStructs.cs" />
+    <Compile Include="Assets\Scripts\AirSim\CameraFiltersScript.cs" />
+    <Compile Include="Assets\Scripts\AirSim\ColorEncoding.cs" />
+    <Compile Include="Assets\Scripts\AirSim\InitializeAirSim.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterLook.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMove.cs" />
     <Compile Include="Assets\Scripts\EarthSystem\BillboardOnCamera.cs" />
@@ -656,6 +661,7 @@
     <Compile Include="Assets\Views\Screens\TelemetryScreenView.xaml.cs" />
     <None Include="Assets\Shaders\EarthShader.shader" />
     <None Include="Assets\Shaders\SkyBoxCubemapShader.shader" />
+    <None Include="Assets\Shaders\CameraEffects.shader" />
     <None Include="Assets\Shaders\NewSurfaceShader.shader" />
     <None Include="Assets\NoesisGUI\LICENSE.txt" />
     <Reference Include="Unity.Timeline.Editor">
