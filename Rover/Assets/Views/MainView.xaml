@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:RoverGUI.Views"
              xmlns:NoesisGUIExtensions="clr-namespace:NoesisGUIExtensions;assembly=Noesis.GUI.Extensions"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1900" >
+             d:DesignHeight="1030" d:DesignWidth="1920" >
     
     <NoesisGUIExtensions:Xaml.Dependencies>
         <NoesisGUIExtensions:Dependency Source="Screens/TelemetryScreenView.xaml"/>
@@ -19,8 +19,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <views:TelemetryScreenView x:Name="telemetryScreenView"
-            Visibility="Visible"/>
+        <views:TelemetryScreenView x:Name="telemetryScreenView" 
+                                   Visibility="Visible"/>
         <views:SecondScreenIView 
             Grid.Column="1"
             Visibility="Collapsed"/>

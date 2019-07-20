@@ -15,7 +15,7 @@ public class RenderCameraToTelemetryScreenXaml : MonoBehaviour
 
         // Create render texture
         UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture(
-            512, 512, 1, UnityEngine.RenderTextureFormat.ARGB32, UnityEngine.RenderTextureReadWrite.Linear);
+            1024, 1024, 1, UnityEngine.RenderTextureFormat.ARGB32, UnityEngine.RenderTextureReadWrite.Linear);
         UnityEngine.RenderTexture.active = renderTexture;
 
 

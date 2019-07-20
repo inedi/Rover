@@ -665,7 +665,6 @@
     <None Include="Assets\Shaders\CameraEffectsShader.shader" />
     <None Include="Assets\NoesisGUI\LICENSE.txt" />
     <None Include="Assets\Shaders\OutlinesPostprocessedShader.shader" />
-    <None Include="Assets\Shaders\testcam.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/inedi/Desktop/Git/Rover/Rover/Rover/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

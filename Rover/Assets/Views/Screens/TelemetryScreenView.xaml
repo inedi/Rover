@@ -5,21 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:RoverGUI.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="990">
-    
-    <Viewbox Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <Grid Width="892" Height="1032" Margin="34,24">
+             d:DesignHeight="1000" d:DesignWidth="1000">
 
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-            <!--Dashboard panel-->
-
-            <Grid >
+        <!--Telemetry panel-->
+        <Viewbox Stretch="Uniform"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center">
+            <Grid Width="960" 
+                  Margin="30,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
@@ -52,7 +51,6 @@
                                     AngleCoordinateRotation="225"
                                     Minimum="-85"
                                     Maximum="225"
-                            
                                     />
                 </Grid>
                 <Grid Grid.Column="1"
@@ -76,7 +74,6 @@
                                     AngleCoordinateRotation="240"
                                     Minimum="0"
                                     Maximum="50"
-                            
                                     />
 
                     <!--Status {Binding Status}-->
@@ -85,63 +82,83 @@
                     <TextBlock Text="Жизнеобеспечение"
                                 Style="{StaticResource TitleTextStyle}"/>
                 </StackPanel>
+
+
             </Grid>
+        </Viewbox>
 
 
-            <controls:Compass Grid.Row="1"
+        <!--Lidar camera panel-->
+        <Rectangle  Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Stretch="UniformToFill"
+                    Fill="Black" 
+                    />
+        <Rectangle  x:Name="radarCameraRect" 
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Stretch="UniformToFill"
+                    Fill="Black" 
+                    />
+
+        <!--Compass panel-->
+        <Viewbox Grid.Row="1" 
+                 VerticalAlignment="Top"
+                 Stretch="Uniform">
+            <Border Width="960"
+                    Background="#4C000000" >
+                <controls:Compass Grid.Column="1"
                                 Width="380"
                                 VerticalAlignment="Center"
-                                Margin="0,0,0,0"
                                 Style="{StaticResource CompassStyle}"
                                 Angle="{Binding Azimuth}"
                                 />
-            <Rectangle 
-                       Grid.Row="2"
-                       Margin="30"
-                       Stretch="UniformToFill"
-                       Fill="Black" 
-                       />
+            </Border>
+        </Viewbox>
 
-            <Rectangle x:Name="radarCameraRect" 
-                       Grid.Row="2"
-                       Margin="30"
-                       Stretch="UniformToFill"
-                       Fill="Black" 
-                       />
-          
+        <!--Clinometr & Clock panel-->
+        <Viewbox Grid.Row="1" 
+                 VerticalAlignment="Bottom">
+            <Grid Width="900" 
+                  Margin="30,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-
-            <!--Clock panel-->
-            <StackPanel 
+                <StackPanel 
                 Grid.Row="3" 
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
                 >
-                <Ellipse Width="24"
-                         Height="24"
-                         Fill="#FF00A2FF"
-                         />
-                <TextBlock Text="15:34" 
+                    <Ellipse Width="24"
+                     Height="24"
+                     Fill="#FF00A2FF"
+                     />
+                    <TextBlock Text="15:34" 
                            Margin="20,0"
                            Style="{StaticResource TitleTextStyle}" />
 
-                <TextBlock  Text="10 февр. 2037" 
+                    <TextBlock  Text="10 февр. 2037" 
                            Style="{StaticResource TitleTextStyle}"/>
 
-            </StackPanel>
-            <StackPanel Grid.Row="3" Margin="20"
+                </StackPanel>
+                <StackPanel Grid.Row="3" 
                     HorizontalAlignment="Left" Width="500">
-                <Slider x:Name="testslider"
+                    <Slider x:Name="testslider"
                             Value="0"
                             Minimum="-100"
                             Maximum="300"
                             LargeChange="10" SmallChange="1"/>
-                <Slider x:Name="testslider2"
+                    <Slider x:Name="testslider2"
                             Value="-0"
                             Minimum="-4000"
                             Maximum="4000"
                             LargeChange="15" SmallChange="5"/>
-            </StackPanel>
-        </Grid>
-    </Viewbox>
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+
+    </Grid>
 </UserControl>
