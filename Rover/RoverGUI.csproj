@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\Views\Screens\ChatScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Views\Screens\HudOptionsScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,7 +104,10 @@
     <Compile Include="Assets\Converters\PowerToStatusConverter.cs" />
     <Compile Include="Assets\Converters\SpeedToStatusConverneter.cs" />
     <Compile Include="Assets\Data\Entities\GaugeStatus.cs" />
+    <Compile Include="Assets\Data\Entities\MessageModel.cs" />
+    <Compile Include="Assets\Data\Entities\MessageSelector.cs" />
     <Compile Include="Assets\Data\Entities\StarColor.cs" />
+    <Compile Include="Assets\Data\Repositories\MessageRepozitory.cs" />
     <Compile Include="Assets\Data\Repositories\StarColorRepository.cs" />
     <Compile Include="Assets\Mvvm\ObservableObject.cs" />
     <Compile Include="Assets\Mvvm\RelayCommand.cs" />
@@ -108,10 +115,14 @@
     <Compile Include="Assets\Mvvm\WeakAction.cs" />
     <Compile Include="Assets\Mvvm\WeakActionT.cs" />
     <Compile Include="Assets\Mvvm\WeakFunc.cs" />
+    <Compile Include="Assets\ViewModels\ChatScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\HudOptionsScreenViewModel.cs" />
     <Compile Include="Assets\ViewModels\TelemetryScreenViewModel.cs" />
     <Compile Include="Assets\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Views\Screens\ChatScreenView.xaml.cs">
+      <DependentUpon>ChatScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\Views\Screens\HudOptionsScreenView.xaml.cs">
       <DependentUpon>HudOptionsScreenView.xaml</DependentUpon>

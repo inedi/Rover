@@ -9,7 +9,6 @@ using RoverGUI.ViewModels;
 
 namespace RoverGUI.Views
 {
-    
     public partial class TelemetryScreenView : UserControl
     {
         TelemetryScreenViewModel _context = new TelemetryScreenViewModel();

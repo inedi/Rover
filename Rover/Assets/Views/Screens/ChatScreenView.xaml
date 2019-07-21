@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="RoverGUI.Views.ChatScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:data ="clr-namespace:RoverGUI.Data.Entities"
+             Background="#FF071049">
+    <UserControl.Resources>
+        <data:MessageSelector x:Key="MessageDataTemplateSelector"/>
+        <DataTemplate x:Key="IncomingMessageDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Foreground="#FFB3DDCE">
+                    <Run Text="JPL: "/>
+                    <Run Text="{Binding Message}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="OutcomingMessageDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Foreground="#FFB1CFF4">
+                    <Run Text="RVR: "/>
+                    <Run Text="{Binding Message}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="30,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Rectangle Height="2"
+                   VerticalAlignment="Bottom"
+                   Fill="#FF1773C5"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="ROVER STATS" Background="#FF1773C5" Foreground="White"/>
+            <Rectangle Width="5"
+                       Height="5"
+                       Margin="15,0"
+                       Fill="#FF437AC3"/>
+            <TextBlock Text="IP: 10.030.080"
+                       Foreground="White"/>
+        </StackPanel>
+
+        <Label Content="R1"
+               HorizontalAlignment="Right"
+               Background="#FF1773C5" 
+               Foreground="White"/>
+
+        <ScrollViewer x:Name="scroll"
+                      Grid.Row="1"
+                      Margin="0,15"
+                      Background="#FF08072E"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel Margin="15,0">
+                <TextBlock Foreground="#FFB1CFF4" 
+                           Text="TEXT BASED [INCOMING MESSAGE]"/>
+                <TextBlock Foreground="#FFB1CFF4" 
+                           Text="v.0.928"/>
+                <TextBlock Foreground="#FFB1CFF4" 
+                           Text="---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"/>
+
+                <Border Height="1" 
+                        BorderThickness="0,1,0,0"
+                        Margin="0,5,0,0">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="15,0" 
+                                             SpreadMethod="Repeat"
+                                             StartPoint="0,0"
+                                             MappingMode="Absolute"
+                                             >
+                            <GradientStop Color="#FFB1CFF4" Offset="0.6"/>
+                            <GradientStop Color="Transparent" Offset="0.6"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
+                <ItemsControl Margin="0,15"
+                              ItemsSource="{Binding Messages}"
+                              ItemTemplateSelector="{StaticResource MessageDataTemplateSelector}">
+
+                </ItemsControl>
+                <TextBox x:Name="textBox" 
+                         Style="{StaticResource MessageInputTextBoxStyle}"/>
+                    
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="0,0,10,0">
+                <Rectangle Height="20"
+                           Fill="#FFC9D1A4"
+                           />
+                <TextBlock Text="12.0"
+                           Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Margin="0,0,10,0">
+                <Rectangle Height="20"
+                           Fill="#FFAA6060"
+                           />
+                <TextBlock Text="80.2 TECH"
+                           Foreground="White"/>
+            </StackPanel>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Rectangle Height="20"
+                           Fill="#FFAA6060"
+                           />
+                <TextBlock Grid.Row="1" 
+                           Text="LOCATION: MOON"
+                           Foreground="White"/>
+                <TextBlock Grid.Row="1"
+                           HorizontalAlignment="Right"
+                           Text="V.1029"
+                           Foreground="#FF28A98D"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

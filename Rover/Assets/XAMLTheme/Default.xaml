@@ -4,6 +4,8 @@
                     xmlns:converters="clr-namespace:RoverGUI.Converters"
                     >
 
+    <!--Note that in Noesis, SnapsToDevicePixels is not implemented! Uses UseLayoutRounding -->
+
     <!--
     ///////////////////////////////////////////////
     Colors
@@ -28,24 +30,28 @@
     <StreamGeometry x:Key="GaugeArrowGeometry">M 23.522044,15.215264 0.31578264,30.068487 6.4005607,15.212023 0.31578264,0.35995939 Z</StreamGeometry>
 
     <Style x:Key="BaseTickStyle" TargetType="Ellipse">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Fill" Value="{StaticResource DarkDotBrush}"/>
         <Setter Property="Width" Value="4"/>
         <Setter Property="Height" Value="4"/>
     </Style>
 
     <Style x:Key="NormalTickStyle" TargetType="Ellipse">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Fill" Value="{StaticResource ForegroundBrush}"/>
         <Setter Property="Width" Value="4"/>
         <Setter Property="Height" Value="4"/>
     </Style>
 
     <Style x:Key="WarningTickStyle" TargetType="Ellipse">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Fill" Value="{StaticResource WarningRangeBrush}"/>
         <Setter Property="Width" Value="4"/>
         <Setter Property="Height" Value="4"/>
     </Style>
 
     <Style x:Key="DangerTickStyle" TargetType="Ellipse">
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Fill" Value="{StaticResource DangerRangeBrush}"/>
         <Setter Property="Width" Value="4"/>
         <Setter Property="Height" Value="4"/>
@@ -75,6 +81,8 @@
     -->
 
     <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
@@ -97,7 +105,44 @@
     </Style>
 
 
+   
 
+    <Style x:Key="MessageInputTextBoxStyle" TargetType="TextBox">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="CaretBrush" Value="Transparent"/>
+        <Setter Property="SelectionBrush" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border Name="Border"
+                            CornerRadius="2"
+                            Padding="2"
+                            BorderThickness="1">
+                        
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled"/>
+                                <VisualState x:Name="ReadOnly"/>
+                                <VisualState x:Name="MouseOver" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer  x:Name="PART_ContentHost" Margin="0"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!--
     ///////////////////////////////////////////////
@@ -106,7 +151,7 @@
     -->
     <Style x:Key="SpeedGaugeStyle" TargetType="controls:Gauge">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="ValueForeground" Value="Yellow"/>
@@ -263,7 +308,7 @@
 
     <Style x:Key="PowerGaugeStyle" TargetType="controls:Gauge">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="ValueForeground" Value="Yellow"/>
@@ -381,7 +426,7 @@
 
     <Style x:Key="EnergyProgressBarStyle" TargetType="controls:RoverProgressBar">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="Yellow"/>
         <Setter Property="Background" Value="{StaticResource HudBackgroundBrush}"/>
@@ -439,7 +484,7 @@
 
     <Style x:Key="CompassStyle" TargetType="controls:Compass">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
         <Setter Property="Template">
@@ -652,5 +697,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+
+
 
 </ResourceDictionary>
