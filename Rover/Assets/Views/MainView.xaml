@@ -29,7 +29,7 @@
             Visibility="Collapsed"/>
         <views:ChatScreenView  x:Name="chatScreenView"
                                Grid.Column="1"
-                               Visibility="Visible"/>
+                               Visibility="Visible" />
 
         <Menu  VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Menu">

@@ -79,6 +79,11 @@
          Copyright 1997,1998 Autodesk Inc.
          Free for Personal Use
     -->
+    
+    <FontFamily x:Key="Hack">/RoverGUI;component/Assets/Fonts/#Hack</FontFamily>
+    <!-- Font Hack Mit licenze 
+         https://github.com/source-foundry/Hack
+    -->
 
     <Style x:Key="BaseTextBlockStyle" TargetType="TextBlock">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -114,7 +119,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AllowDrop" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
-        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Hack}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
         <Setter Property="CaretBrush" Value="Transparent"/>
         <Setter Property="SelectionBrush" Value="{StaticResource ForegroundBrush}"/>
@@ -124,10 +129,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border"
-                            CornerRadius="2"
-                            Padding="2"
-                            BorderThickness="1">
+                    <Border Name="Border">
                         
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -317,16 +319,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Gauge">
                     <Grid IsHitTestVisible="False">
-                        <!--Поверка радиусов-->
-                        <!--<Ellipse Fill="Olive"/>-->
-                        <!--<Ellipse>
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Color="#FF3E0000" Offset="0"/>
-                                    <GradientStop Color="#00000000" Offset="1"/>
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>-->
                         <Path x:Name="Part_PathBackground"
                             Stretch="None"
                             Stroke="{StaticResource HudBackgroundBrush}"

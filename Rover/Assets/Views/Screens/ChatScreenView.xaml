@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             
              xmlns:data ="clr-namespace:RoverGUI.Data.Entities"
-             Background="#FF071049">
+             Background="#FF071049"
+             >
     <UserControl.Resources>
         <data:MessageSelector x:Key="MessageDataTemplateSelector"/>
         <DataTemplate x:Key="IncomingMessageDataTemplate">
@@ -62,7 +64,8 @@
                 <TextBlock Foreground="#FFB1CFF4" 
                            Text="v.0.928"/>
                 <TextBlock Foreground="#FFB1CFF4" 
-                           Text="---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"/>
+                           Text="---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+                           />
 
                 <Border Height="1" 
                         BorderThickness="0,1,0,0"
@@ -86,10 +89,6 @@
                 </ItemsControl>
                 <TextBox x:Name="textBox" 
                          Style="{StaticResource MessageInputTextBoxStyle}"/>
-                    
-
-
-
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">

@@ -157,6 +157,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Assets\Fonts\ISOCPEUR.ttf" />
+    <Resource Include="Assets\Fonts\Hack-Bold.ttf" />
+    <Resource Include="Assets\Fonts\Hack-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
